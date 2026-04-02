@@ -5,14 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Cookie Monsters — TWBL Wiffleball</title>
   <meta name="description" content="Cookie Monsters wiffleball team — TWBL Medium Pitch Division, DFW Area. Est. 2026."/>
-  <link rel="icon" type="image/png" href="assets/logo.png"/>
+  <link rel="icon" type="image/png" href="assets/logo-transparent.png"/>
   <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
 
 <nav>
   <a class="nav-logo" href="#home" onclick="showPage('home')">
-    <img src="assets/logo.png" alt="Cookie Monsters Logo"/>
+    <img src="assets/logo-transparent.png" alt="Cookie Monsters Logo"/>
     COOKIE MONSTERS
   </a>
   <ul class="nav-links" id="nav-links">
@@ -45,13 +45,29 @@
 
 <!-- HOME -->
 <main id="page-home" class="page active">
-  <section class="hero">
-    <div class="hero-tag">TWBL 2026 — Medium Pitch Division · DFW Area</div>
-    <h1>COOKIE<br><span>MONSTERS</span></h1>
-    <p>The hardest hitting, fastest pitching, most cookie-fueled wiffleball team in the Texas Wiffle Ball League. We don't crumble under pressure.</p>
-    <div class="hero-btns">
-      <a class="btn-primary" href="#batting" onclick="showStats('batting')">View Stats</a>
-      <a class="btn-outline" href="#roster"  onclick="showPage('roster')">Meet the Roster</a>
+  <section class="hero hero-split">
+    <div class="hero-content">
+      <div class="hero-tag">TWBL 2026 — Medium Pitch Division · DFW Area</div>
+      <h1>COOKIE<br><span>MONSTERS</span></h1>
+      <p>The hardest hitting, fastest pitching, most cookie-fueled wiffleball team in the Texas Wiffle Ball League. We don't crumble under pressure.</p>
+      <div class="hero-btns">
+        <a class="btn-primary" href="#batting" onclick="showStats('batting')">View Stats</a>
+        <a class="btn-outline" href="#roster"  onclick="showPage('roster')">Meet the Roster</a>
+      </div>
+    </div>
+    <div class="hero-slideshow">
+      <div class="slideshow-track" id="slideshow-track">
+        <!-- SLIDESHOW PHOTOS — add your images here as <div class="slide"><img src="assets/your-photo.jpg" alt=""/></div> -->
+        <div class="slide slide-placeholder">
+          <div class="slide-placeholder-inner">
+            <div style="font-size:36px;opacity:0.3;">📸</div>
+            <div style="font-size:12px;color:var(--gray);margin-top:8px;">Photos coming soon</div>
+          </div>
+        </div>
+      </div>
+      <div class="slideshow-dots" id="slideshow-dots"></div>
+      <button class="slideshow-nav prev" onclick="slideshowNav(-1)">‹</button>
+      <button class="slideshow-nav next" onclick="slideshowNav(1)">›</button>
     </div>
   </section>
   <section class="home-grid">
@@ -577,6 +593,7 @@
   <div class="footer-social">
     <a class="social-btn ig" href="https://www.instagram.com/cookiemonsterswiffle/" target="_blank" rel="noopener">Instagram</a>
     <a class="social-btn yt" href="https://www.youtube.com/@CookieMonstersWiffle" target="_blank" rel="noopener">YouTube</a>
+    <a class="social-btn fb" href="https://www.facebook.com/search/top?q=cookie%20monsters%20wiffle" target="_blank" rel="noopener">Facebook</a>
   </div>
   <div class="footer-links">
     <a class="footer-link" href="#home"   onclick="showPage('home')">Home</a>

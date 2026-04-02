@@ -11,7 +11,7 @@ const ADMIN_PASSWORD  = 'cm-admin-2026';
 const PLAYERS = {
   harrell: {
     number:'27', name:'Garret Harrell', year:'3rd Year', hand:'R/R',
-    position:'Pitcher / Batter', debutYear:'2024',
+    position:'Pitcher / Batter', debutYear:'2024', height:"6'0", weight:'180',
     // 2025 = tournament season
     batting2025:  { G:'—',PA:'—',AB:'—',R:'—',H:'—','1B':'—','2B':'—','3B':'—',HR:'—',RBI:'—',BB:'—',SO:'—',BA:'—',OBP:'—',SLG:'—',OPS:'—','OPS+':'—',WOBA:'—',TB:'—',WAR:'—' },
     pitching2025: { W:'—',L:'—','W-L%':'—',ERA:'—',G:'—',GS:'—',GF:'—',SV:'—',IP:'—',H:'—',R:'—',ER:'—',HR:'—',BB:'—',SO:'—',BF:'—',WHIP:'—','SO/BB':'—',WAR:'—' },
@@ -22,7 +22,7 @@ const PLAYERS = {
   },
   simpson: {
     number:'10', name:'Landon Simpson', year:'2nd Year', hand:'R/R',
-    position:'Pitcher / Infield', debutYear:'2026',
+    position:'Pitcher / Infield', debutYear:'2026', height:"6'2", weight:'215',
     batting2025:  { G:'4',PA:'16',AB:'10',R:'4',H:'4','1B':'3','2B':'0','3B':'0',HR:'1',RBI:'3',BB:'4',SO:'2',BA:'.400',OBP:'.571',SLG:'.700',OPS:'1.271','OPS+':'158.9',WOBA:'.488',TB:'7',WAR:'2.49' },
     pitching2025: { W:'3',L:'0','W-L%':'.357',ERA:'4.00',G:'4',GS:'3',GF:'0',SV:'0',IP:'11.2',H:'4',R:'1',ER:'1',HR:'0',BB:'11',SO:'0',BF:'50',WHIP:'1.34','SO/BB':'0',WAR:'1.48' },
     fielding2025: { G:'4',GS:'4',Inn:'14',CH:'6',PO:'5',A:'0',E:'1',DP:'0','Fld%':'.833','RF/4':'1.43','RF/G':'1.25',POS:'IF,P,OF',WAR:'0.35' },
@@ -32,7 +32,7 @@ const PLAYERS = {
   },
   wurzbach: {
     number:'12', name:'Logan Wurzbach', year:'Rookie', hand:'R/R',
-    position:'Pitcher / Infield / Outfield', debutYear:'2026',
+    position:'Pitcher / Infield / Outfield', debutYear:'2026', height:"5'10", weight:'165',
     batting2025:  { G:'4',PA:'17',AB:'11',R:'4',H:'2','1B':'0','2B':'2','3B':'0',HR:'0',RBI:'5',BB:'6',SO:'7',BA:'.182',OBP:'.471',SLG:'.364',OPS:'.834','OPS+':'104.3',WOBA:'.418',TB:'4',WAR:'0.44' },
     pitching2025: { W:'0',L:'0','W-L%':'—',ERA:'0.00',G:'1',GS:'0',GF:'0',SV:'0',IP:'1',H:'0',R:'0',ER:'0',HR:'0',BB:'2',SO:'2',BF:'5',WHIP:'2.00','SO/BB':'1.0',WAR:'0.15' },
     fielding2025: { G:'4',GS:'4',Inn:'12.2',CH:'5',PO:'5',A:'0',E:'0',DP:'0','Fld%':'1.000','RF/4':'1.64','RF/G':'1.25',POS:'IF,P,OF',WAR:'0.10' },
@@ -52,7 +52,7 @@ const PLAYERS = {
   },
   torres: {
     number:'19', name:'Zach Torres', year:'2nd Year', hand:'L/L',
-    position:'Pitcher / Batter', debutYear:'2026',
+    position:'Pitcher / Batter', debutYear:'2026', height:"5'10", weight:'185',
     batting2025:  { G:'—',PA:'—',AB:'—',R:'—',H:'—','1B':'—','2B':'—','3B':'—',HR:'—',RBI:'—',BB:'—',SO:'—',BA:'—',OBP:'—',SLG:'—',OPS:'—','OPS+':'—',WOBA:'—',TB:'—',WAR:'—' },
     pitching2025: { W:'—',L:'—','W-L%':'—',ERA:'—',G:'—',GS:'—',GF:'—',SV:'—',IP:'—',H:'—',R:'—',ER:'—',HR:'—',BB:'—',SO:'—',BF:'—',WHIP:'—','SO/BB':'—',WAR:'—' },
     fielding2025: { G:'—',GS:'—',Inn:'—',CH:'—',PO:'—',A:'—',E:'—',DP:'—','Fld%':'—','RF/4':'—','RF/G':'—',POS:'—',WAR:'—' },
@@ -62,7 +62,7 @@ const PLAYERS = {
   },
   davidson: {
     number:'21', name:'Landon Davidson', year:'2nd Year', hand:'R/R',
-    position:'Pitcher', debutYear:'2026', nickname:'Lando',
+    position:'Pitcher', debutYear:'2026', nickname:'Lando', height:"5'8", weight:'130',
     batting2025:  { G:'4',PA:'18',AB:'12',R:'3',H:'2','1B':'1','2B':'1','3B':'0',HR:'0',RBI:'3',BB:'4',SO:'7',BA:'.167',OBP:'.375',SLG:'.250',OPS:'.625','OPS+':'78.1',WOBA:'.289',TB:'3',WAR:'-0.32' },
     pitching2025: { W:'0',L:'0','W-L%':'—',ERA:'7.27',G:'2',GS:'0',GF:'0',SV:'1',IP:'1.1',H:'0',R:'0',ER:'2',HR:'0',BB:'7',SO:'2',BF:'11',WHIP:'6.36','SO/BB':'.29',WAR:'-0.24' },
     fielding2025: { G:'2',GS:'0',Inn:'1.1',CH:'0',PO:'0',A:'0',E:'0',DP:'0','Fld%':'—','RF/4':'0','RF/G':'0',POS:'P',WAR:'0' },
@@ -72,7 +72,7 @@ const PLAYERS = {
   },
   bischops: {
     number:'55', name:'Joshua Bischops', year:'Rookie', hand:'R/R',
-    position:'Pitcher / Infield / Outfield', debutYear:'2026',
+    position:'Pitcher / Infield / Outfield', debutYear:'2026', height:"5'10", weight:'150',
     batting2025:  { G:'4',PA:'16',AB:'10',R:'2',H:'0','1B':'0','2B':'0','3B':'0',HR:'0',RBI:'2',BB:'6',SO:'6',BA:'.000',OBP:'.375',SLG:'.000',OPS:'.375','OPS+':'46.9',WOBA:'.281',TB:'0',WAR:'-0.88' },
     pitching2025: { W:'0',L:'1','W-L%':'.000',ERA:'20.00',G:'2',GS:'1',GF:'0',SV:'1',IP:'1',H:'1',R:'5',ER:'5',HR:'1',BB:'4',SO:'3',BF:'8',WHIP:'5.00','SO/BB':'.75',WAR:'-0.85' },
     fielding2025: { G:'4',GS:'4',Inn:'14',CH:'6',PO:'5',A:'0',E:'1',DP:'0','Fld%':'.833','RF/4':'1.43','RF/G':'1.25',POS:'IF,OF,P',WAR:'0.35' },
@@ -272,6 +272,8 @@ function showPlayer(id) {
     <div class="profile-info-card"><div class="profile-info-val">${p.hand}</div><div class="profile-info-label">Bats / Throws</div></div>
     <div class="profile-info-card"><div class="profile-info-val">${p.year}</div><div class="profile-info-label">Experience</div></div>
     <div class="profile-info-card"><div class="profile-info-val">${p.debutYear}</div><div class="profile-info-label">Debut Year</div></div>
+    <div class="profile-info-card"><div class="profile-info-val">${p.height || '—'}</div><div class="profile-info-label">Height</div></div>
+    <div class="profile-info-card"><div class="profile-info-val">${p.weight ? p.weight + ' lb' : '—'}</div><div class="profile-info-label">Weight</div></div>
   `;
 
   // Build career split tables (2025 + 2026 rows)
@@ -753,3 +755,56 @@ function updateResultsSummary() {
   set('res-ra',     ra || 0);
   set('res-streak', streak);
 }
+
+
+// ═══════════════════════════════════════════════════════════
+// HOME SLIDESHOW
+// ═══════════════════════════════════════════════════════════
+let slideIndex   = 0;
+let slideTotal   = 0;
+let slideTimer   = null;
+
+function initSlideshow() {
+  const track  = document.getElementById('slideshow-track');
+  const dots   = document.getElementById('slideshow-dots');
+  if (!track) return;
+
+  const slides = track.querySelectorAll('.slide');
+  slideTotal   = slides.length;
+  if (slideTotal <= 1) return; // nothing to cycle if 0 or 1 slide
+
+  // Build dots
+  dots.innerHTML = '';
+  slides.forEach((_, i) => {
+    const dot = document.createElement('button');
+    dot.className = 'slideshow-dot' + (i === 0 ? ' active' : '');
+    dot.onclick = () => goToSlide(i);
+    dots.appendChild(dot);
+  });
+
+  startSlideTimer();
+}
+
+function goToSlide(idx) {
+  slideIndex = (idx + slideTotal) % slideTotal;
+  const track = document.getElementById('slideshow-track');
+  if (track) track.style.transform = `translateX(-${slideIndex * 100}%)`;
+  document.querySelectorAll('.slideshow-dot').forEach((d, i) => {
+    d.classList.toggle('active', i === slideIndex);
+  });
+}
+
+function slideshowNav(dir) {
+  clearTimeout(slideTimer);
+  goToSlide(slideIndex + dir);
+  startSlideTimer();
+}
+
+function startSlideTimer() {
+  clearTimeout(slideTimer);
+  if (slideTotal > 1) {
+    slideTimer = setTimeout(() => { goToSlide(slideIndex + 1); startSlideTimer(); }, 4000);
+  }
+}
+
+document.addEventListener('DOMContentLoaded', initSlideshow);
