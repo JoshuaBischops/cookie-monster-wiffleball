@@ -38,6 +38,7 @@
     <li><a class="nav-link" data-page="roster" href="#roster" onclick="showPage('roster')">Roster</a></li>
     <li><a class="nav-link" data-page="about"  href="#about"  onclick="showPage('about')">About Us</a></li>
   </ul>
+  <button class="theme-toggle" id="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">☀</button>
   <button class="nav-hamburger" id="hamburger" aria-label="Open menu">
     <span></span><span></span><span></span>
   </button>
@@ -147,6 +148,21 @@
     </div>
     <div class="leaderboard-note">Leaders update automatically when stats are imported</div>
   </div>
+
+  <!-- LAST GAME SPOTLIGHT -->
+  <div class="last-game-section" id="last-game-section" style="display:none;">
+    <div class="last-game-label">Last Game</div>
+    <div class="last-game-card">
+      <div class="last-game-result" id="lg-result-badge"></div>
+      <div class="last-game-info">
+        <div class="last-game-score" id="lg-score">—</div>
+        <div class="last-game-opp" id="lg-opp">—</div>
+        <div class="last-game-meta" id="lg-meta">—</div>
+      </div>
+      <div class="last-game-notes" id="lg-notes"></div>
+    </div>
+  </div>
+
   <div class="home-footer-note">
     Member of the <a href="https://www.texaswiffleball.com" target="_blank" rel="noopener">Texas Wiffle Ball League (TWBL)</a> — Medium Pitch Division, DFW Area · Est. 2026
   </div>
@@ -542,6 +558,7 @@
 <main id="page-player" class="page">
   <div class="player-profile-back">
     <a class="back-link" href="#roster" onclick="showPage('roster')">← Back to Roster</a>
+    <button class="share-profile-btn" onclick="openShareCard()">⬆ Share Card</button>
   </div>
   <div class="player-profile-hero">
     <div class="profile-number" id="profile-number">55</div>
@@ -735,6 +752,30 @@
       <button class="admin-submit-btn" onclick="adminAddNews()">+ Publish Post</button>
     </div>
 
+  </div>
+</div>
+
+
+<!-- PLAYER CARD SHARE OVERLAY -->
+<div id="share-overlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:9997;align-items:center;justify-content:center;flex-direction:column;gap:16px;">
+  <div class="share-card" id="share-card">
+    <div class="share-card-bg"></div>
+    <div class="share-card-number" id="sc-number">55</div>
+    <div class="share-card-info">
+      <div class="share-card-name" id="sc-name">Joshua Bischops</div>
+      <div class="share-card-pos" id="sc-pos">Pitcher / Infield / Outfield</div>
+      <div class="share-card-physical" id="sc-physical">5'10 · 150 lb</div>
+      <div class="share-card-badges" id="sc-badges"></div>
+    </div>
+    <div class="share-card-stats" id="sc-stats"></div>
+    <div class="share-card-footer">
+      <img src="assets/logo-transparent.png" class="share-card-logo" alt=""/>
+      <span>COOKIE MONSTERS · TWBL 2026</span>
+    </div>
+  </div>
+  <div style="display:flex;gap:12px;">
+    <button onclick="printPlayerCard()" style="padding:10px 22px;background:var(--cookie);color:#000;font-weight:500;font-size:13px;border:none;border-radius:6px;cursor:pointer;font-family:'DM Sans',sans-serif;">🖨 Print / Save</button>
+    <button onclick="closeShareOverlay()" style="padding:10px 20px;background:transparent;color:#8a9bb0;font-size:13px;border:1px solid rgba(255,255,255,0.15);border-radius:6px;cursor:pointer;font-family:'DM Sans',sans-serif;">Close</button>
   </div>
 </div>
 

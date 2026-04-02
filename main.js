@@ -260,11 +260,13 @@ function showPlayer(id) {
   document.getElementById('profile-name').textContent   = p.name;
 
   const yearClass = p.year==='Rookie' ? 'pb-rook' : p.year==='3rd Year' ? 'pb-vet' : 'pb-year';
+  const physique = [p.height, p.weight ? p.weight + ' lb' : null].filter(Boolean).join(' · ');
   document.getElementById('profile-badges').innerHTML = `
     <span class="player-badge ${yearClass}">${p.year}</span>
     <span class="player-badge pb-hand">${p.hand}</span>
     <span class="player-badge pb-hand">${p.position}</span>
     ${p.nickname ? `<span class="player-badge pb-hand">"${p.nickname}"</span>` : ''}
+    ${physique ? `<span class="player-badge pb-physique">${physique}</span>` : ''}
   `;
 
   document.getElementById('profile-info-grid').innerHTML = `
@@ -272,8 +274,6 @@ function showPlayer(id) {
     <div class="profile-info-card"><div class="profile-info-val">${p.hand}</div><div class="profile-info-label">Bats / Throws</div></div>
     <div class="profile-info-card"><div class="profile-info-val">${p.year}</div><div class="profile-info-label">Experience</div></div>
     <div class="profile-info-card"><div class="profile-info-val">${p.debutYear}</div><div class="profile-info-label">Debut Year</div></div>
-    <div class="profile-info-card"><div class="profile-info-val">${p.height || '—'}</div><div class="profile-info-label">Height</div></div>
-    <div class="profile-info-card"><div class="profile-info-val">${p.weight ? p.weight + ' lb' : '—'}</div><div class="profile-info-label">Weight</div></div>
   `;
 
   // Build career split tables (2025 + 2026 rows)
@@ -808,3 +808,160 @@ function startSlideTimer() {
 }
 
 document.addEventListener('DOMContentLoaded', initSlideshow);
+
+
+// ═══════════════════════════════════════════════════════════
+// DARK / LIGHT MODE
+// ═══════════════════════════════════════════════════════════
+function toggleTheme() {
+  const isLight = document.body.classList.toggle('light');
+  localStorage.setItem('cm-theme', isLight ? 'light' : 'dark');
+  document.getElementById('theme-toggle').textContent = isLight ? '🌙' : '☀';
+}
+
+function initTheme() {
+  const saved = localStorage.getItem('cm-theme');
+  if (saved === 'light') {
+    document.body.classList.add('light');
+    const btn = document.getElementById('theme-toggle');
+    if (btn) btn.textContent = '🌙';
+  }
+}
+
+
+// ═══════════════════════════════════════════════════════════
+// LAST GAME SPOTLIGHT
+// ═══════════════════════════════════════════════════════════
+function updateLastGame() {
+  const section = document.getElementById('last-game-section');
+  if (!section || !gameLog.length) return;
+
+  const g    = gameLog[gameLog.length - 1];
+  const win  = g.result === 'W';
+  const loss = g.result === 'L';
+
+  section.style.display = 'block';
+
+  const badge = document.getElementById('lg-result-badge');
+  badge.innerHTML = `<span class="result-badge ${win?'win':loss?'loss':'tie'}" style="width:48px;height:48px;font-size:18px;line-height:48px;">${g.result}</span>`;
+
+  document.getElementById('lg-score').textContent = g.score || '—';
+  document.getElementById('lg-opp').textContent   = `vs. ${g.opponent}`;
+
+  const dateStr = g.date ? new Date(g.date + 'T00:00:00').toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}) : '—';
+  document.getElementById('lg-meta').textContent  = `${dateStr} · ${g.type || 'TWBL'}`;
+
+  const notesEl = document.getElementById('lg-notes');
+  notesEl.textContent = g.notes || '';
+  notesEl.style.display = g.notes ? 'block' : 'none';
+}
+
+
+// ═══════════════════════════════════════════════════════════
+// PLAYER SHARE CARD
+// ═══════════════════════════════════════════════════════════
+let currentPlayerKey = null;
+
+// Override showPlayer to track current player
+const _origShowPlayer = showPlayer;
+showPlayer = function(id) {
+  currentPlayerKey = id;
+  _origShowPlayer(id);
+};
+
+function openShareCard() {
+  const id = currentPlayerKey;
+  if (!id) return;
+  const p = PLAYERS[id];
+  if (!p) return;
+
+  // Get live or fallback stats
+  const b  = getLiveStatForPlayer(p.name, 'batting')  || p.batting2026  || p.batting2025;
+  const pi = getLiveStatForPlayer(p.name, 'pitching') || p.pitching2026 || p.pitching2025;
+
+  document.getElementById('sc-number').textContent  = `#${p.number}`;
+  document.getElementById('sc-name').textContent    = p.name;
+  document.getElementById('sc-pos').textContent     = p.position;
+
+  const physical = [p.height, p.weight ? p.weight + ' lb' : null].filter(Boolean).join(' · ');
+  document.getElementById('sc-physical').textContent = physical || '';
+
+  const yearClass = p.year==='Rookie' ? 'pb-rook' : p.year==='3rd Year' ? 'pb-vet' : 'pb-year';
+  document.getElementById('sc-badges').innerHTML = `
+    <span class="player-badge ${yearClass}" style="font-size:10px;">${p.year}</span>
+    <span class="player-badge pb-hand" style="font-size:10px;">${p.hand}</span>
+  `;
+
+  // Pick best available stats to show on card
+  const batStats = [
+    { label:'BA',   val: b?.BA   || '—' },
+    { label:'OPS',  val: b?.OPS  || '—' },
+    { label:'HR',   val: b?.HR   || '—' },
+    { label:'RBI',  val: b?.RBI  || '—' },
+  ];
+  const pitStats = [
+    { label:'ERA',  val: pi?.ERA  || '—' },
+    { label:'WHIP', val: pi?.WHIP || '—' },
+    { label:'SO',   val: pi?.SO   || '—' },
+    { label:'W',    val: pi?.W    || '—' },
+  ];
+
+  // Use batting if available, pitching if pitcher-only
+  const statsToShow = (b?.AB && b.AB !== '—') ? batStats : pitStats;
+  document.getElementById('sc-stats').innerHTML = statsToShow.map(s => `
+    <div class="sc-stat">
+      <div class="sc-stat-val">${s.val}</div>
+      <div class="sc-stat-label">${s.label}</div>
+    </div>`).join('');
+
+  const overlay = document.getElementById('share-overlay');
+  overlay.style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+}
+
+function closeShareOverlay() {
+  document.getElementById('share-overlay').style.display = 'none';
+  document.body.style.overflow = '';
+}
+
+function printPlayerCard() {
+  const card = document.getElementById('share-card');
+  const win  = window.open('', '_blank', 'width=480,height=620');
+  win.document.write(`
+    <!DOCTYPE html><html><head>
+    <title>Player Card</title>
+    <link rel="stylesheet" href="${window.location.origin}${window.location.pathname.replace('index.html','')}style.css"/>
+    <style>
+      body { margin:0; background:#0a1628; display:flex; align-items:center; justify-content:center; min-height:100vh; }
+      @media print { body { background:#0a1628 !important; } }
+    </style>
+    </head><body>
+    ${card.outerHTML}
+    <script>window.onload=()=>{ setTimeout(()=>window.print(),400); }<\/script>
+    </body></html>`);
+  win.document.close();
+}
+
+// Close share overlay on backdrop click or Escape
+document.getElementById('share-overlay')?.addEventListener('click', e => {
+  if (e.target.id === 'share-overlay') closeShareOverlay();
+});
+
+
+// ═══════════════════════════════════════════════════════════
+// HOOK INTO GAME LOG — update last game + home record
+// ═══════════════════════════════════════════════════════════
+const _origRenderGL = renderGameLog;
+renderGameLog = function() {
+  _origRenderGL();
+  updateLastGame();
+};
+
+
+// ═══════════════════════════════════════════════════════════
+// INIT
+// ═══════════════════════════════════════════════════════════
+document.addEventListener('DOMContentLoaded', () => {
+  initTheme();
+  updateLastGame();
+});
