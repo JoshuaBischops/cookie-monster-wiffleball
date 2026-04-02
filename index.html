@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cookie Monsters — TWBL Wiffleball</title>
+  <meta name="description" content="Cookie Monsters wiffleball team — TWBL Medium Pitch Division, DFW Area. Est. 2026."/>
+  <link rel="icon" type="image/png" href="assets/logo.png"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="#home" onclick="showPage('home')">
+    <img src="assets/logo.png" alt="Cookie Monsters Logo"/>
+    COOKIE MONSTERS
+  </a>
+  <ul class="nav-links" id="nav-links">
+    <li><a class="nav-link active" data-page="home" href="#home" onclick="showPage('home')">Home</a></li>
+    <li><a class="nav-link" data-page="news" href="#news" onclick="showPage('news')">News</a></li>
+    <li class="nav-dropdown" id="stats-dropdown">
+      <a class="nav-link" data-page="stats" href="#batting" onclick="showStats('batting')">
+        Statistics <span class="dropdown-arrow">▾</span>
+      </a>
+      <div class="dropdown-menu">
+        <a class="dropdown-item" data-tab="batting"  href="#batting"  onclick="showStats('batting')">Batting Stats</a>
+        <a class="dropdown-item" data-tab="pitching" href="#pitching" onclick="showStats('pitching')">Pitching Stats</a>
+        <a class="dropdown-item" data-tab="fielding" href="#fielding" onclick="showStats('fielding')">Fielding Stats</a>
+        <a class="dropdown-item" data-tab="advanced" href="#advanced" onclick="showStats('advanced')">Advanced Stats</a>
+        <a class="dropdown-item" data-tab="team"     href="#team"     onclick="showStats('team')">Team Stats</a>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" data-tab="import"   href="#import"   onclick="showStats('import')">⬆ Import Spreadsheet</a>
+      </div>
+    </li>
+    <li><a class="nav-link" data-page="recaps" href="#recaps" onclick="showPage('recaps')">Season Recaps</a></li>
+    <li><a class="nav-link" data-page="media" href="#media" onclick="showPage('media')">Media</a></li>
+    <li><a class="nav-link" data-page="results" href="#results" onclick="showPage('results')">Results</a></li>
+    <li><a class="nav-link" data-page="roster" href="#roster" onclick="showPage('roster')">Roster</a></li>
+    <li><a class="nav-link" data-page="about"  href="#about"  onclick="showPage('about')">About Us</a></li>
+  </ul>
+  <button class="nav-hamburger" id="hamburger" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- HOME -->
+<main id="page-home" class="page active">
+  <section class="hero">
+    <div class="hero-tag">TWBL 2026 — Medium Pitch Division · DFW Area</div>
+    <h1>COOKIE<br><span>MONSTERS</span></h1>
+    <p>The hardest hitting, fastest pitching, most cookie-fueled wiffleball team in the Texas Wiffle Ball League. We don't crumble under pressure.</p>
+    <div class="hero-btns">
+      <a class="btn-primary" href="#batting" onclick="showStats('batting')">View Stats</a>
+      <a class="btn-outline" href="#roster"  onclick="showPage('roster')">Meet the Roster</a>
+    </div>
+  </section>
+  <section class="home-grid">
+    <div class="home-card">
+      <h3>Latest News</h3>
+      <div class="news-item"><div class="title">2026 TWBL Season Begins</div><div class="date">2026</div></div>
+      <div class="news-item"><div class="title">Roster Finalized — 7 Players</div><div class="date">January 2026</div></div>
+      <div class="news-item"><div class="title">Welcome Rookies: Wurzbach, Hightower, Bischops</div><div class="date">January 2026</div></div>
+    </div>
+    <div class="home-card">
+      <h3>2026 Record</h3>
+      <div class="record-display">
+        <div class="record-num" id="home-record-display">0<span>-</span>0</div>
+        <div class="record-sub">Season In Progress</div>
+      </div>
+      <div class="stat-row"><span class="stat-label">Roster Size</span><span class="stat-val blue">7</span></div>
+      <div class="stat-row"><span class="stat-label">Returning Players</span><span class="stat-val">4</span></div>
+      <div class="stat-row"><span class="stat-label">Rookies</span><span class="stat-val blue">3</span></div>
+      <div class="stat-row"><span class="stat-label">TWBL Division</span><span class="stat-val">Medium Pitch</span></div>
+    </div>
+    <div class="home-card">
+      <h3>2026 Roster</h3>
+      <div class="stat-row"><span class="stat-label">#27 Garret Harrell</span><span class="stat-val blue">3rd Year</span></div>
+      <div class="stat-row"><span class="stat-label">#10 Landon Simpson</span><span class="stat-val blue">2nd Year</span></div>
+      <div class="stat-row"><span class="stat-label">#12 Logan Wurzbach</span><span class="stat-val">Rookie</span></div>
+      <div class="stat-row"><span class="stat-label">#14 Dylan Hightower</span><span class="stat-val">Rookie</span></div>
+      <div class="stat-row"><span class="stat-label">#19 Zach Torres</span><span class="stat-val blue">2nd Year</span></div>
+      <div class="stat-row"><span class="stat-label">#21 Landon Davidson</span><span class="stat-val blue">2nd Year</span></div>
+      <div class="stat-row"><span class="stat-label">#55 Joshua Bischops</span><span class="stat-val">Rookie</span></div>
+    </div>
+  </section>
+
+  <!-- LEADERBOARD -->
+  <div class="leaderboard-section">
+    <div class="leaderboard-title">2026 Team Leaders</div>
+    <div class="leaderboard-grid" id="leaderboard-grid">
+      <div class="leader-card">
+        <div class="leader-stat-name">Batting Avg</div>
+        <div class="leader-name" id="leader-ba-name">—</div>
+        <div class="leader-val" id="leader-ba-val">—</div>
+      </div>
+      <div class="leader-card">
+        <div class="leader-stat-name">Home Runs</div>
+        <div class="leader-name" id="leader-hr-name">—</div>
+        <div class="leader-val" id="leader-hr-val">—</div>
+      </div>
+      <div class="leader-card">
+        <div class="leader-stat-name">RBI</div>
+        <div class="leader-name" id="leader-rbi-name">—</div>
+        <div class="leader-val" id="leader-rbi-val">—</div>
+      </div>
+      <div class="leader-card">
+        <div class="leader-stat-name">OPS</div>
+        <div class="leader-name" id="leader-ops-name">—</div>
+        <div class="leader-val" id="leader-ops-val">—</div>
+      </div>
+      <div class="leader-card">
+        <div class="leader-stat-name">ERA</div>
+        <div class="leader-name" id="leader-era-name">—</div>
+        <div class="leader-val" id="leader-era-val">—</div>
+      </div>
+      <div class="leader-card">
+        <div class="leader-stat-name">Strikeouts</div>
+        <div class="leader-name" id="leader-so-name">—</div>
+        <div class="leader-val" id="leader-so-val">—</div>
+      </div>
+      <div class="leader-card">
+        <div class="leader-stat-name">WHIP</div>
+        <div class="leader-name" id="leader-whip-name">—</div>
+        <div class="leader-val" id="leader-whip-val">—</div>
+      </div>
+      <div class="leader-card">
+        <div class="leader-stat-name">WAR</div>
+        <div class="leader-name" id="leader-war-name">—</div>
+        <div class="leader-val" id="leader-war-val">—</div>
+      </div>
+    </div>
+    <div class="leaderboard-note">Leaders update automatically when stats are imported</div>
+  </div>
+  <div class="home-footer-note">
+    Member of the <a href="https://www.texaswiffleball.com" target="_blank" rel="noopener">Texas Wiffle Ball League (TWBL)</a> — Medium Pitch Division, DFW Area · Est. 2026
+  </div>
+</main>
+
+<!-- NEWS -->
+<main id="page-news" class="page">
+  <div class="page-header"><h2>News &amp; Updates</h2><p>Game recaps, announcements, and team highlights</p></div>
+  <div class="news-filter-bar">
+    <button class="news-filter-btn active" onclick="filterNews('all', this)">All</button>
+    <button class="news-filter-btn" onclick="filterNews('recap', this)">Game Recaps</button>
+    <button class="news-filter-btn" onclick="filterNews('team', this)">Team News</button>
+    <button class="news-filter-btn" onclick="filterNews('media', this)">Media</button>
+  </div>
+  <section class="news-grid" id="news-grid">
+    <article class="news-card" data-category="team"><div class="news-img">TEAM NEWS</div><div class="news-body"><div class="news-tag">Team News</div><h3>2026 Roster Finalized</h3><p>Cookie Monsters are locked in for TWBL 2026 with 4 returning players and 3 rookies joining the squad. Watch out for this crew.</p><div class="news-date">January 2026</div></div></article>
+    <article class="news-card" data-category="team"><div class="news-img">SEASON PREVIEW</div><div class="news-body"><div class="news-tag">Preview</div><h3>Season Preview: TWBL 2026</h3><p>Breaking down the competition and what Cookie Monsters need to do to make a deep playoff run this year.</p><div class="news-date">January 2026</div></div></article>
+    <article class="news-card" data-category="team"><div class="news-img">ROOKIE SPOTLIGHT</div><div class="news-body"><div class="news-tag">Spotlight</div><h3>Rookie Watch: Wurzbach, Hightower &amp; Bischops</h3><p>Three new faces join the Cookie Monsters lineup for 2026. Get to know them before opening day.</p><div class="news-date">January 2026</div></div></article>
+    <article class="news-card" data-category="media"><div class="news-img">YOUTUBE</div><div class="news-body"><div class="news-tag">YouTube</div><h3>Follow Us on YouTube</h3><p>Check out the Cookie Monsters YouTube channel for highlights, game recaps, and more from the 2026 TWBL season.</p><div class="news-date">2026</div></div></article>
+  </section>
+  <div style="padding:8px 48px 16px;font-size:12px;color:var(--gray);">
+    To add a game recap: open <code style="background:rgba(255,255,255,0.06);padding:1px 6px;border-radius:4px;color:var(--cookie-light);">index.html</code>, find the <code style="background:rgba(255,255,255,0.06);padding:1px 6px;border-radius:4px;color:var(--cookie-light);">news-grid</code> section, and copy any &lt;article&gt; block. Set <code style="background:rgba(255,255,255,0.06);padding:1px 6px;border-radius:4px;color:var(--cookie-light);">data-category="recap"</code> for game recaps.
+  </div>
+</main>
+
+<!-- STATISTICS -->
+<main id="page-stats" class="page">
+  <div class="page-header">
+    <h2 id="stats-title">Batting Stats</h2>
+    <p id="stats-sub">2026 Season — Standard Batting</p>
+  </div>
+  <div class="stats-content">
+
+    <!-- BATTING -->
+    <div id="stat-batting" class="stat-tab">
+      <div class="stats-section-label">Standard Batting — 2026 Season</div>
+      <div class="stats-table-wrap">
+        <table class="stats-table" id="table-batting">
+          <thead><tr>
+            <th>#</th><th>Player</th><th>G</th><th>PA</th><th>AB</th>
+            <th>R</th><th>H</th><th>1B</th><th>2B</th><th>3B</th><th>HR</th>
+            <th>RBI</th><th>BB</th><th>SO</th><th>BA</th><th>OBP</th><th>SLG</th><th>OPS</th><th>OPS+</th><th>WOBA</th><th>TB</th><th>WAR</th>
+          </tr></thead>
+          <tbody id="tbody-batting">
+            <tr><td class="num">27</td><td class="name" onclick="showPlayer('harrell')">Garret Harrell</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+            <tr><td class="num">10</td><td class="name" onclick="showPlayer('simpson')">Landon Simpson</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+            <tr><td class="num">12</td><td class="name" onclick="showPlayer('wurzbach')">Logan Wurzbach</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+            <tr><td class="num">14</td><td class="name" onclick="showPlayer('hightower')">Dylan Hightower</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+            <tr><td class="num">19</td><td class="name" onclick="showPlayer('torres')">Zach Torres</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+            <tr><td class="num">21</td><td class="name" onclick="showPlayer('davidson')">Landon Davidson</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+            <tr><td class="num">55</td><td class="name" onclick="showPlayer('bischops')">Joshua Bischops</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="stats-empty">Stats will populate once the 2026 season begins. Click a player name to view their profile.</p>
+    </div>
+
+    <!-- PITCHING -->
+    <div id="stat-pitching" class="stat-tab" style="display:none;">
+      <div class="stats-section-label">Standard Pitching — 2026 Season</div>
+      <div class="stats-table-wrap">
+        <table class="stats-table" id="table-pitching">
+          <thead><tr>
+            <th>#</th><th>Player</th><th>W</th><th>L</th><th>W-L%</th><th>ERA</th>
+            <th>G</th><th>GS</th><th>GF</th><th>SV</th><th>IP</th><th>H</th>
+            <th>R</th><th>ER</th><th>HR</th><th>BB</th><th>SO</th><th>BF</th><th>WHIP</th><th>SO/BB</th><th>WAR</th>
+          </tr></thead>
+          <tbody id="tbody-pitching">
+            <tr><td class="num">27</td><td class="name" onclick="showPlayer('harrell')">Garret Harrell</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+            <tr><td class="num">10</td><td class="name" onclick="showPlayer('simpson')">Landon Simpson</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+            <tr><td class="num">12</td><td class="name" onclick="showPlayer('wurzbach')">Logan Wurzbach</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+            <tr><td class="num">14</td><td class="name" onclick="showPlayer('hightower')">Dylan Hightower</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+            <tr><td class="num">19</td><td class="name" onclick="showPlayer('torres')">Zach Torres</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+            <tr><td class="num">21</td><td class="name" onclick="showPlayer('davidson')">Landon Davidson</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+            <tr><td class="num">55</td><td class="name" onclick="showPlayer('bischops')">Joshua Bischops</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="stats-empty">Stats will populate once the 2026 season begins. Click a player name to view their profile.</p>
+    </div>
+
+    <!-- FIELDING -->
+    <div id="stat-fielding" class="stat-tab" style="display:none;">
+      <div class="stats-section-label">Standard Fielding — 2026 Season</div>
+      <div class="stats-table-wrap">
+        <table class="stats-table" id="table-fielding">
+          <thead><tr>
+            <th>#</th><th>Player</th><th>G</th><th>GS</th><th>Inn</th><th>CH</th><th>PO</th><th>A</th><th>E</th><th>DP</th><th>Fld%</th><th>RF/4</th><th>RF/G</th><th>POS</th><th>WAR</th>
+          </tr></thead>
+          <tbody id="tbody-fielding">
+            <tr><td class="num">27</td><td class="name" onclick="showPlayer('harrell')">Garret Harrell</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+            <tr><td class="num">10</td><td class="name" onclick="showPlayer('simpson')">Landon Simpson</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+            <tr><td class="num">12</td><td class="name" onclick="showPlayer('wurzbach')">Logan Wurzbach</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+            <tr><td class="num">14</td><td class="name" onclick="showPlayer('hightower')">Dylan Hightower</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+            <tr><td class="num">19</td><td class="name" onclick="showPlayer('torres')">Zach Torres</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+            <tr><td class="num">21</td><td class="name" onclick="showPlayer('davidson')">Landon Davidson</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+            <tr><td class="num">55</td><td class="name" onclick="showPlayer('bischops')">Joshua Bischops</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="stats-empty">Stats will populate once the 2026 season begins.</p>
+    </div>
+
+    <!-- ADVANCED -->
+    <div id="stat-advanced" class="stat-tab" style="display:none;">
+      <div class="stats-section-label">Advanced Batting — 2026 Season</div>
+      <div class="stats-table-wrap">
+        <table class="stats-table" id="table-advanced-bat">
+          <thead><tr>
+            <th>#</th><th>Player</th><th>BAbip</th><th>ISO</th><th>HR%</th><th>SO%</th><th>BB%</th><th>RS%</th><th>SOS%</th><th>SOL%</th>
+          </tr></thead>
+          <tbody id="tbody-advanced-bat">
+            <tr><td class="num">27</td><td class="name" onclick="showPlayer('harrell')">Garret Harrell</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+            <tr><td class="num">10</td><td class="name" onclick="showPlayer('simpson')">Landon Simpson</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+            <tr><td class="num">12</td><td class="name" onclick="showPlayer('wurzbach')">Logan Wurzbach</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+            <tr><td class="num">14</td><td class="name" onclick="showPlayer('hightower')">Dylan Hightower</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+            <tr><td class="num">19</td><td class="name" onclick="showPlayer('torres')">Zach Torres</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+            <tr><td class="num">21</td><td class="name" onclick="showPlayer('davidson')">Landon Davidson</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+            <tr><td class="num">55</td><td class="name" onclick="showPlayer('bischops')">Joshua Bischops</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="stats-section-label" style="margin-top:28px;">Advanced Pitching — 2026 Season</div>
+      <div class="stats-table-wrap">
+        <table class="stats-table" id="table-advanced-pit">
+          <thead><tr>
+            <th>#</th><th>Player</th><th>BA</th><th>OBP</th><th>SLG</th><th>OPS</th><th>BAbip</th>
+          </tr></thead>
+          <tbody id="tbody-advanced-pit">
+            <tr><td class="num">27</td><td class="name" onclick="showPlayer('harrell')">Garret Harrell</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+            <tr><td class="num">10</td><td class="name" onclick="showPlayer('simpson')">Landon Simpson</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+            <tr><td class="num">12</td><td class="name" onclick="showPlayer('wurzbach')">Logan Wurzbach</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+            <tr><td class="num">14</td><td class="name" onclick="showPlayer('hightower')">Dylan Hightower</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+            <tr><td class="num">19</td><td class="name" onclick="showPlayer('torres')">Zach Torres</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+            <tr><td class="num">21</td><td class="name" onclick="showPlayer('davidson')">Landon Davidson</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+            <tr><td class="num">55</td><td class="name" onclick="showPlayer('bischops')">Joshua Bischops</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="stats-empty">Advanced stats will populate once the 2026 season begins.</p>
+    </div>
+
+    <!-- TEAM -->
+    <div id="stat-team" class="stat-tab" style="display:none;">
+      <div class="stats-section-label">Team Overview — 2026 Season</div>
+      <div class="stats-table-wrap">
+        <table class="stats-table">
+          <thead><tr><th>Category</th><th>Value</th><th>TWBL Rank</th></tr></thead>
+          <tbody id="tbody-team">
+            <tr><td>Record</td><td>0-0</td><td>—</td></tr>
+            <tr><td>Runs / Game</td><td>—</td><td>—</td></tr>
+            <tr><td>Runs Allowed / Game</td><td>—</td><td>—</td></tr>
+            <tr><td>Team BA</td><td>—</td><td>—</td></tr>
+            <tr><td>Team OBP</td><td>—</td><td>—</td></tr>
+            <tr><td>Team SLG</td><td>—</td><td>—</td></tr>
+            <tr><td>Team OPS</td><td>—</td><td>—</td></tr>
+            <tr><td>Team ERA</td><td>—</td><td>—</td></tr>
+            <tr><td>Team WHIP</td><td>—</td><td>—</td></tr>
+            <tr><td>Team HR</td><td>—</td><td>—</td></tr>
+            <tr><td>TWBL Division</td><td>Medium Pitch</td><td>—</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="stats-empty">Team stats will populate once the 2026 season begins.</p>
+    </div>
+
+    <!-- IMPORT -->
+    <div id="stat-import" class="stat-tab" style="display:none;">
+      <div class="import-box">
+        <div class="import-header">
+          <h3>Import Stats from Spreadsheet</h3>
+          <p>Export your stats sheet as <strong>.csv</strong> and upload it here. Stats update across all pages instantly. Column headers must match exactly.</p>
+        </div>
+
+        <div class="import-section">
+          <div class="import-label">Step 1 — Choose stat type</div>
+          <div class="import-type-tabs">
+            <button class="import-type-btn active" onclick="setImportType('batting',this)">Batting</button>
+            <button class="import-type-btn" onclick="setImportType('pitching',this)">Pitching</button>
+            <button class="import-type-btn" onclick="setImportType('fielding',this)">Fielding</button>
+            <button class="import-type-btn" onclick="setImportType('advanced',this)">Advanced</button>
+            <button class="import-type-btn" onclick="setImportType('team',this)">Team</button>
+          </div>
+        </div>
+
+        <div class="import-section">
+          <div class="import-label">Step 2 — Required CSV column headers (row 1)</div>
+          <div class="import-format" id="format-batting"><code>#, Player, G, PA, AB, R, H, 1B, 2B, 3B, HR, RBI, BB, SO, BA, OBP, SLG, OPS, OPS+, WOBA, TB, WAR</code></div>
+          <div class="import-format" id="format-pitching" style="display:none;"><code>#, Player, W, L, W-L%, ERA, G, GS, GF, SV, IP, H, R, ER, HR, BB, SO, BF, WHIP, SO/BB, WAR</code></div>
+          <div class="import-format" id="format-fielding" style="display:none;"><code>#, Player, G, GS, Inn, CH, PO, A, E, DP, Fld%, RF/4, RF/G, POS, WAR</code></div>
+          <div class="import-format" id="format-advanced" style="display:none;"><code>#, Player, BAbip, ISO, HR%, SO%, BB%, RS%, SOS%, SOL%</code><p class="import-hint">For advanced pitching use a second CSV with: #, Player, BA, OBP, SLG, OPS, BAbip</p></div>
+          <div class="import-format" id="format-team" style="display:none;"><code>Category, Value, TWBL Rank</code></div>
+          <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap;">
+            <button class="btn-outline btn-sm" onclick="downloadTemplate('batting')">⬇ Batting Template</button>
+            <button class="btn-outline btn-sm" onclick="downloadTemplate('pitching')">⬇ Pitching Template</button>
+            <button class="btn-outline btn-sm" onclick="downloadTemplate('fielding')">⬇ Fielding Template</button>
+            <button class="btn-outline btn-sm" onclick="downloadTemplate('team')">⬇ Team Template</button>
+          </div>
+        </div>
+
+        <div class="import-section">
+          <div class="import-label">Step 3 — Upload your CSV</div>
+          <label class="file-drop-zone" id="drop-zone" for="csv-file-input">
+            <div class="drop-icon">📂</div>
+            <div class="drop-text">Click to choose a .csv file</div>
+            <div class="drop-sub">or drag and drop here</div>
+            <input type="file" id="csv-file-input" accept=".csv" style="display:none;"/>
+          </label>
+        </div>
+
+        <div class="import-section" id="import-preview-section" style="display:none;">
+          <div class="import-label">Preview — <span id="preview-count"></span></div>
+          <div class="import-preview-wrap">
+            <table class="stats-table" id="import-preview-table"></table>
+          </div>
+          <div class="import-actions">
+            <button class="btn-primary" onclick="applyImport()">✓ Apply to Stats Pages</button>
+            <button class="btn-cancel" onclick="cancelImport()">Cancel</button>
+          </div>
+        </div>
+
+        <div class="import-success" id="import-success" style="display:none;">
+          ✓ Stats updated! <a href="#batting" onclick="showStats('batting')">View Batting Stats →</a>
+        </div>
+        <div class="import-error" id="import-error" style="display:none;"></div>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+
+<!-- MEDIA -->
+<main id="page-media" class="page">
+  <div class="page-header"><h2>Media</h2><p>Highlights, photos, and content from Cookie Monsters</p></div>
+
+  <!-- YouTube Latest -->
+  <div class="media-section-label">Latest from YouTube</div>
+  <div class="youtube-section">
+    <div class="yt-feature">
+      <div class="yt-embed-placeholder">
+        <div class="yt-play-icon">▶</div>
+        <div class="yt-placeholder-text">Latest Video</div>
+        <div class="yt-placeholder-sub">Subscribe at <a href="https://www.youtube.com/@CookieMonstersWiffle" target="_blank" rel="noopener">@CookieMonstersWiffle</a></div>
+      </div>
+    </div>
+    <div class="yt-thumbnails" id="yt-thumbnails">
+      <div class="yt-thumb-card"><div class="yt-thumb-img"></div><div class="yt-thumb-label">Game Highlights</div></div>
+      <div class="yt-thumb-card"><div class="yt-thumb-img"></div><div class="yt-thumb-label">Season Recap</div></div>
+      <div class="yt-thumb-card"><div class="yt-thumb-img"></div><div class="yt-thumb-label">Behind the Scenes</div></div>
+    </div>
+  </div>
+
+  <!-- Photo Gallery -->
+  <div class="media-section-label">Photo Gallery</div>
+  <div class="gallery-instructions">
+    <p>Add your photos by editing <code>index.html</code> — find the <code>gallery-grid</code> section and paste in image tags. See the README for exact instructions.</p>
+  </div>
+  <div class="gallery-grid" id="gallery-grid">
+    <!-- PHOTO SLOTS — replace src="#" with your actual image paths -->
+    <!-- To add a photo: copy one of the blocks below, paste it in, change src to your image file path -->
+    <div class="gallery-item placeholder"><div class="gallery-placeholder-icon">📸</div><div class="gallery-placeholder-text">Add a photo</div></div>
+    <div class="gallery-item placeholder"><div class="gallery-placeholder-icon">📸</div><div class="gallery-placeholder-text">Add a photo</div></div>
+    <div class="gallery-item placeholder"><div class="gallery-placeholder-icon">📸</div><div class="gallery-placeholder-text">Add a photo</div></div>
+    <div class="gallery-item placeholder"><div class="gallery-placeholder-icon">📸</div><div class="gallery-placeholder-text">Add a photo</div></div>
+    <div class="gallery-item placeholder"><div class="gallery-placeholder-icon">📸</div><div class="gallery-placeholder-text">Add a photo</div></div>
+    <div class="gallery-item placeholder"><div class="gallery-placeholder-icon">📸</div><div class="gallery-placeholder-text">Add a photo</div></div>
+  </div>
+
+  <!-- Instagram CTA -->
+  <div class="media-ig-cta">
+    <div class="ig-cta-text">Follow us on Instagram for real-time updates</div>
+    <a class="btn-primary" href="https://www.instagram.com/cookiemonsterswiffle/" target="_blank" rel="noopener">@cookiemonsterswiffle</a>
+  </div>
+</main>
+
+<!-- SEASON RECAPS -->
+<main id="page-recaps" class="page">
+  <div class="page-header"><h2>Season Recaps</h2><p>A history of Cookie Monsters in competition</p></div>
+  <section class="recaps-list">
+    <div class="recap-card">
+      <div class="recap-year">2026</div>
+      <div class="recap-info"><h3>TWBL Founding Season — In Progress</h3><p>Cookie Monsters make their Texas Wiffle Ball League debut in the Medium Pitch Division. The squad is locked in and ready to compete. Full recap coming at season's end.</p></div>
+      <span class="recap-badge badge-reg">Ongoing</span>
+    </div>
+    <div class="recap-card">
+      <div class="recap-year">2025</div>
+      <div class="recap-info"><h3>Tournament Season — Pre-TWBL</h3><p>Before joining the TWBL, Cookie Monsters cut their teeth on the tournament circuit. This is where the foundation was built and the team identity was formed.</p></div>
+      <span class="recap-badge badge-run">Tournaments</span>
+    </div>
+  </section>
+</main>
+
+
+<!-- RESULTS -->
+<main id="page-results" class="page">
+  <div class="page-header">
+    <h2>Game Results</h2>
+    <p>2026 Season — TWBL Medium Pitch Division</p>
+  </div>
+
+  <!-- Season Summary Bar -->
+  <div class="results-summary">
+    <div class="results-stat-card">
+      <div class="results-stat-val" id="res-wins">0</div>
+      <div class="results-stat-label">Wins</div>
+    </div>
+    <div class="results-stat-card">
+      <div class="results-stat-val" id="res-losses">0</div>
+      <div class="results-stat-label">Losses</div>
+    </div>
+    <div class="results-stat-card">
+      <div class="results-stat-val" id="res-pct">—</div>
+      <div class="results-stat-label">Win %</div>
+    </div>
+    <div class="results-stat-card">
+      <div class="results-stat-val" id="res-rs">0</div>
+      <div class="results-stat-label">Runs Scored</div>
+    </div>
+    <div class="results-stat-card">
+      <div class="results-stat-val" id="res-ra">0</div>
+      <div class="results-stat-label">Runs Allowed</div>
+    </div>
+    <div class="results-stat-card">
+      <div class="results-stat-val" id="res-streak">—</div>
+      <div class="results-stat-label">Streak</div>
+    </div>
+  </div>
+
+  <!-- Game Log Table -->
+  <div class="stats-content">
+    <div class="stats-table-wrap">
+      <table class="stats-table">
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Type</th>
+            <th>Opponent</th>
+            <th>Result</th>
+            <th>Score</th>
+            <th>Notes</th>
+          </tr>
+        </thead>
+        <tbody id="game-log-tbody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <div style="padding:4px 48px 32px;font-size:12px;color:var(--gray);">
+    Game results are added by the team admin. Check back after each game.
+  </div>
+</main>
+
+<!-- ROSTER -->
+<main id="page-roster" class="page">
+  <div class="page-header"><h2>2026 Roster</h2><p>Click any player to view their full profile and stats</p></div>
+  <section class="roster-grid">
+    <div class="player-card" onclick="showPlayer('harrell')">
+      <div class="player-avatar" style="border-color:#90caf9;">27</div>
+      <div class="player-info"><div class="player-name-card">Garret Harrell</div><div class="player-meta"><span class="player-badge pb-vet">3rd Year</span><span class="player-badge pb-hand">R/R</span></div></div>
+      <span class="player-arrow">→</span>
+    </div>
+    <div class="player-card" onclick="showPlayer('simpson')">
+      <div class="player-avatar">10</div>
+      <div class="player-info"><div class="player-name-card">Landon Simpson</div><div class="player-meta"><span class="player-badge pb-year">2nd Year</span><span class="player-badge pb-hand">R/R</span></div></div>
+      <span class="player-arrow">→</span>
+    </div>
+    <div class="player-card" onclick="showPlayer('wurzbach')">
+      <div class="player-avatar">12</div>
+      <div class="player-info"><div class="player-name-card">Logan Wurzbach</div><div class="player-meta"><span class="player-badge pb-rook">Rookie</span><span class="player-badge pb-hand">R/R</span></div></div>
+      <span class="player-arrow">→</span>
+    </div>
+    <div class="player-card" onclick="showPlayer('hightower')">
+      <div class="player-avatar">14</div>
+      <div class="player-info"><div class="player-name-card">Dylan Hightower</div><div class="player-meta"><span class="player-badge pb-rook">Rookie</span><span class="player-badge pb-hand">L/L</span></div></div>
+      <span class="player-arrow">→</span>
+    </div>
+    <div class="player-card" onclick="showPlayer('torres')">
+      <div class="player-avatar">19</div>
+      <div class="player-info"><div class="player-name-card">Zach Torres</div><div class="player-meta"><span class="player-badge pb-year">2nd Year</span><span class="player-badge pb-hand">L/L</span></div></div>
+      <span class="player-arrow">→</span>
+    </div>
+    <div class="player-card" onclick="showPlayer('davidson')">
+      <div class="player-avatar">21</div>
+      <div class="player-info"><div class="player-name-card">Landon Davidson</div><div class="player-meta"><span class="player-badge pb-year">2nd Year</span><span class="player-badge pb-hand">R/R</span></div></div>
+      <span class="player-arrow">→</span>
+    </div>
+    <div class="player-card featured" onclick="showPlayer('bischops')">
+      <div class="player-avatar" style="border-color:var(--cookie-light);">55</div>
+      <div class="player-info"><div class="player-name-card">Joshua Bischops</div><div class="player-meta"><span class="player-badge pb-rook">Rookie</span><span class="player-badge pb-hand">R/R</span></div></div>
+      <span class="player-arrow">→</span>
+    </div>
+  </section>
+</main>
+
+<!-- PLAYER PROFILE -->
+<main id="page-player" class="page">
+  <div class="player-profile-back">
+    <a class="back-link" href="#roster" onclick="showPage('roster')">← Back to Roster</a>
+  </div>
+  <div class="player-profile-hero">
+    <div class="profile-number" id="profile-number">55</div>
+    <div class="profile-header-info">
+      <h2 id="profile-name">Player Name</h2>
+      <div class="profile-badges" id="profile-badges"></div>
+    </div>
+  </div>
+  <div class="profile-content">
+    <div class="profile-info-grid" id="profile-info-grid"></div>
+    <div class="profile-section">
+      <div class="profile-section-title">Batting — Career Splits</div>
+      <div class="stats-table-wrap"><table class="stats-table" id="profile-bat-table"><thead id="profile-bat-head"></thead><tbody id="profile-bat-body"></tbody></table></div>
+    </div>
+    <div class="profile-section">
+      <div class="profile-section-title">Pitching — Career Splits</div>
+      <div class="stats-table-wrap"><table class="stats-table" id="profile-pit-table"><thead id="profile-pit-head"></thead><tbody id="profile-pit-body"></tbody></table></div>
+    </div>
+    <div class="profile-section">
+      <div class="profile-section-title">Fielding — Career Splits</div>
+      <div class="stats-table-wrap"><table class="stats-table" id="profile-fld-table"><thead id="profile-fld-head"></thead><tbody id="profile-fld-body"></tbody></table></div>
+    </div>
+  </div>
+</main>
+
+<!-- ABOUT -->
+<main id="page-about" class="page">
+  <div class="page-header"><h2>About Us</h2><p>The story behind the most cookie-fueled team in TWBL</p></div>
+  <div class="about-hero">
+    <h3>Who We Are</h3>
+    <p>Hello, we are The Cookie Monsters. Founded in 2025 by Landon Simpson and Landon Davidson, we are a team built on competition, creativity, and a passion for the game. Our goal is to elevate wiffle ball through high-level play, engaging content, and a growing community.<br><br>
+    We compete in the Texas Wiffle Ball League (TWBL) — Medium Pitch Division, DFW Area. Follow us on Instagram and YouTube to catch all the action.</p>
+  </div>
+  <div class="roster-section-label">2026 Roster</div>
+  <section class="roster-grid" style="padding-bottom:48px;">
+    <div class="player-card" onclick="showPlayer('harrell')"><div class="player-avatar" style="border-color:#90caf9;">27</div><div class="player-info"><div class="player-name-card">Garret Harrell</div><div class="player-meta"><span class="player-badge pb-vet">3rd Year</span><span class="player-badge pb-hand">R/R</span></div></div><span class="player-arrow">→</span></div>
+    <div class="player-card" onclick="showPlayer('simpson')"><div class="player-avatar">10</div><div class="player-info"><div class="player-name-card">Landon Simpson</div><div class="player-meta"><span class="player-badge pb-year">2nd Year</span><span class="player-badge pb-hand">R/R</span></div></div><span class="player-arrow">→</span></div>
+    <div class="player-card" onclick="showPlayer('wurzbach')"><div class="player-avatar">12</div><div class="player-info"><div class="player-name-card">Logan Wurzbach</div><div class="player-meta"><span class="player-badge pb-rook">Rookie</span><span class="player-badge pb-hand">R/R</span></div></div><span class="player-arrow">→</span></div>
+    <div class="player-card" onclick="showPlayer('hightower')"><div class="player-avatar">14</div><div class="player-info"><div class="player-name-card">Dylan Hightower</div><div class="player-meta"><span class="player-badge pb-rook">Rookie</span><span class="player-badge pb-hand">L/L</span></div></div><span class="player-arrow">→</span></div>
+    <div class="player-card" onclick="showPlayer('torres')"><div class="player-avatar">19</div><div class="player-info"><div class="player-name-card">Zach Torres</div><div class="player-meta"><span class="player-badge pb-year">2nd Year</span><span class="player-badge pb-hand">L/L</span></div></div><span class="player-arrow">→</span></div>
+    <div class="player-card" onclick="showPlayer('davidson')"><div class="player-avatar">21</div><div class="player-info"><div class="player-name-card">Landon Davidson</div><div class="player-meta"><span class="player-badge pb-year">2nd Year</span><span class="player-badge pb-hand">R/R</span></div></div><span class="player-arrow">→</span></div>
+    <div class="player-card featured" onclick="showPlayer('bischops')"><div class="player-avatar" style="border-color:var(--cookie-light);">55</div><div class="player-info"><div class="player-name-card">Joshua Bischops</div><div class="player-meta"><span class="player-badge pb-rook">Rookie</span><span class="player-badge pb-hand">R/R</span></div></div><span class="player-arrow">→</span></div>
+  </section>
+</main>
+
+<footer>
+  <div class="footer-left">&copy; 2026 Cookie Monsters Wiffleball &mdash; TWBL Medium Pitch &mdash; Est. 2026</div>
+  <button class="admin-trigger-btn" onclick="openAdminPanel()" title="Admin Panel">⚙</button>
+  <div class="footer-social">
+    <a class="social-btn ig" href="https://www.instagram.com/cookiemonsterswiffle/" target="_blank" rel="noopener">Instagram</a>
+    <a class="social-btn yt" href="https://www.youtube.com/@CookieMonstersWiffle" target="_blank" rel="noopener">YouTube</a>
+  </div>
+  <div class="footer-links">
+    <a class="footer-link" href="#home"   onclick="showPage('home')">Home</a>
+    <a class="footer-link" href="#news"   onclick="showPage('news')">News</a>
+    <a class="footer-link" href="#roster" onclick="showPage('roster')">Roster</a>
+    <a class="footer-link" href="#about"  onclick="showPage('about')">About</a>
+    <a class="footer-twbl" href="https://www.texaswiffleball.com" target="_blank" rel="noopener">TWBL ↗</a>
+  </div>
+</footer>
+
+<!-- PASSWORD OVERLAY -->
+<div id="import-lock-overlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.78);z-index:9999;align-items:center;justify-content:center;">
+  <div style="background:#112240;border:1px solid rgba(160,120,90,0.3);border-radius:14px;padding:36px 40px;max-width:360px;width:90%;text-align:center;">
+    <div style="font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:2px;color:#f5f5f5;margin-bottom:8px;">Admin Access</div>
+    <div style="font-size:13px;color:#8a9bb0;margin-bottom:24px;">Enter the password to access stat imports.</div>
+    <input id="import-lock-input" type="password" placeholder="Password"
+      style="width:100%;padding:11px 14px;background:#0a1628;border:1px solid rgba(255,255,255,0.1);border-radius:7px;color:#f5f5f5;font-size:14px;font-family:'DM Sans',sans-serif;margin-bottom:12px;outline:none;"/>
+    <div id="import-lock-error" style="display:none;color:#f09595;font-size:12px;margin-bottom:12px;">Incorrect password. Try again.</div>
+    <div style="display:flex;gap:10px;justify-content:center;">
+      <button onclick="submitImportPassword()" style="padding:10px 24px;background:#a0785a;color:#0d0d0d;font-weight:500;font-size:13px;border:none;border-radius:6px;cursor:pointer;font-family:'DM Sans',sans-serif;">Unlock</button>
+      <button onclick="closeImportLock()" style="padding:10px 20px;background:transparent;color:#8a9bb0;font-size:13px;border:1px solid rgba(255,255,255,0.1);border-radius:6px;cursor:pointer;font-family:'DM Sans',sans-serif;">Cancel</button>
+    </div>
+  </div>
+</div>
+
+
+<!-- GALLERY LIGHTBOX -->
+<div class="gallery-lightbox" id="gallery-lightbox">
+  <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+  <button class="lightbox-nav lightbox-prev" onclick="lightboxNav(-1)">‹</button>
+  <img class="lightbox-img" id="lightbox-img" src="" alt=""/>
+  <button class="lightbox-nav lightbox-next" onclick="lightboxNav(1)">›</button>
+</div>
+
+
+<!-- ADMIN PASSWORD OVERLAY -->
+<div id="admin-lock-overlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:9999;align-items:center;justify-content:center;">
+  <div style="background:#112240;border:1px solid rgba(160,120,90,0.3);border-radius:14px;padding:36px 40px;max-width:360px;width:90%;text-align:center;">
+    <div style="font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:2px;color:#f5f5f5;margin-bottom:8px;">Admin Panel</div>
+    <div style="font-size:13px;color:#8a9bb0;margin-bottom:24px;">Enter your admin password to continue.</div>
+    <input id="admin-lock-input" type="password" placeholder="Admin password"
+      style="width:100%;padding:11px 14px;background:#0a1628;border:1px solid rgba(255,255,255,0.1);border-radius:7px;color:#f5f5f5;font-size:14px;font-family:'DM Sans',sans-serif;margin-bottom:12px;outline:none;"/>
+    <div id="admin-lock-error" style="display:none;color:#f09595;font-size:12px;margin-bottom:12px;">Incorrect password.</div>
+    <div style="display:flex;gap:10px;justify-content:center;">
+      <button onclick="submitAdminPassword()" style="padding:10px 24px;background:#a0785a;color:#0d0d0d;font-weight:500;font-size:13px;border:none;border-radius:6px;cursor:pointer;font-family:'DM Sans',sans-serif;">Unlock</button>
+      <button onclick="closeAdminLock()" style="padding:10px 20px;background:transparent;color:#8a9bb0;font-size:13px;border:1px solid rgba(255,255,255,0.1);border-radius:6px;cursor:pointer;font-family:'DM Sans',sans-serif;">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<!-- ADMIN PANEL OVERLAY -->
+<div id="admin-panel-overlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:9998;align-items:flex-start;justify-content:center;overflow-y:auto;padding:24px 0;">
+  <div class="admin-panel">
+    <div class="admin-panel-header">
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:24px;letter-spacing:2px;">Cookie Monsters Admin</div>
+      <button onclick="closeAdminPanel()" style="background:none;border:none;color:#8a9bb0;font-size:22px;cursor:pointer;line-height:1;">✕</button>
+    </div>
+
+    <!-- Add Game Result -->
+    <div class="admin-section">
+      <div class="admin-section-title">Add Game Result</div>
+      <div class="admin-form-grid">
+        <div class="admin-field">
+          <label>Date</label>
+          <input type="date" id="admin-date"/>
+        </div>
+        <div class="admin-field">
+          <label>Game Type</label>
+          <select id="admin-type">
+            <option value="TWBL">TWBL</option>
+            <option value="Tournament">Tournament</option>
+            <option value="Scrimmage">Scrimmage</option>
+          </select>
+        </div>
+        <div class="admin-field">
+          <label>Opponent</label>
+          <input type="text" id="admin-opponent" placeholder="e.g. The Sluggers"/>
+        </div>
+        <div class="admin-field">
+          <label>Result</label>
+          <select id="admin-result">
+            <option value="W">Win</option>
+            <option value="L">Loss</option>
+            <option value="T">Tie</option>
+          </select>
+        </div>
+        <div class="admin-field">
+          <label>Score (e.g. 8-3)</label>
+          <input type="text" id="admin-score" placeholder="8-3"/>
+        </div>
+        <div class="admin-field">
+          <label>Notes (optional)</label>
+          <input type="text" id="admin-notes" placeholder="Game MVP, highlights..."/>
+        </div>
+      </div>
+      <div id="admin-form-error" style="display:none;color:#f09595;font-size:12px;margin-bottom:10px;"></div>
+      <button class="admin-submit-btn" onclick="adminAddGame()">+ Add Game</button>
+    </div>
+
+    <!-- Existing Games -->
+    <div class="admin-section">
+      <div class="admin-section-title">Game Log — Edit / Delete</div>
+      <div class="stats-table-wrap">
+        <table class="stats-table" style="font-size:12px;">
+          <thead><tr><th>Date</th><th>Opponent</th><th>Result</th><th>Type</th><th>Action</th></tr></thead>
+          <tbody id="admin-game-log-tbody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Add News Post -->
+    <div class="admin-section">
+      <div class="admin-section-title">Add News Post</div>
+      <div class="admin-form-grid">
+        <div class="admin-field" style="grid-column:1/-1;">
+          <label>Headline</label>
+          <input type="text" id="admin-news-title" placeholder="W 8-3 vs. The Sluggers"/>
+        </div>
+        <div class="admin-field">
+          <label>Category</label>
+          <select id="admin-news-cat">
+            <option value="recap">Game Recap</option>
+            <option value="team">Team News</option>
+            <option value="media">Media</option>
+            <option value="spotlight">Spotlight</option>
+          </select>
+        </div>
+        <div class="admin-field">
+          <label>Date</label>
+          <input type="text" id="admin-news-date" placeholder="April 12, 2026"/>
+        </div>
+        <div class="admin-field" style="grid-column:1/-1;">
+          <label>Body text</label>
+          <textarea id="admin-news-body" rows="3" placeholder="Write your recap or announcement here..."></textarea>
+        </div>
+      </div>
+      <div id="admin-news-error"   style="display:none;color:#f09595;font-size:12px;margin-bottom:10px;"></div>
+      <div id="admin-news-success" style="display:none;color:#5dcaa5;font-size:12px;margin-bottom:10px;">✓ Post added to News page!</div>
+      <button class="admin-submit-btn" onclick="adminAddNews()">+ Publish Post</button>
+    </div>
+
+  </div>
+</div>
+
+<script src="main.js"></script>
+</body>
+</html>
