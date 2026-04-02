@@ -1113,9 +1113,154 @@ body.light .theme-toggle { border-color: rgba(0,0,0,0.15); color: #1a1a2e; }
   .share-card-name { font-size: 22px; }
 }
 
-/* ─── LOGO — always full color, never filtered ────────────── */
+/* ─── LOGO — always full color, always visible ────────────── */
 .nav-logo img {
-  filter: none !important;
-  -webkit-filter: none !important;
+  filter: drop-shadow(0 0 1px rgba(0,0,0,0.15)) !important;
+  -webkit-filter: drop-shadow(0 0 1px rgba(0,0,0,0.15)) !important;
   mix-blend-mode: normal !important;
 }
+/* In light mode, add a slightly stronger shadow so white parts stay visible */
+body.light .nav-logo img {
+  filter: drop-shadow(0 0 2px rgba(0,0,0,0.25)) drop-shadow(0 0 1px rgba(0,0,0,0.2)) !important;
+  -webkit-filter: drop-shadow(0 0 2px rgba(0,0,0,0.25)) drop-shadow(0 0 1px rgba(0,0,0,0.2)) !important;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   VISUAL POLISH UPDATE
+   ═══════════════════════════════════════════════════════════ */
+
+/* ─── HERO PATTERN BACKGROUND ─────────────────────────────── */
+.hero-pattern {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.03;
+  background-image:
+    radial-gradient(circle at 20% 50%, #c9a07a 1px, transparent 1px),
+    radial-gradient(circle at 80% 20%, #c9a07a 1px, transparent 1px),
+    radial-gradient(circle at 50% 80%, #c9a07a 1px, transparent 1px),
+    radial-gradient(circle at 10% 10%, #c9a07a 1px, transparent 1px),
+    radial-gradient(circle at 90% 90%, #c9a07a 1px, transparent 1px);
+  background-size: 120px 120px;
+  /* Animated wiffleball holes drifting slowly */
+  animation: patternDrift 40s linear infinite;
+}
+@keyframes patternDrift {
+  from { background-position: 0 0; }
+  to   { background-position: 120px 120px; }
+}
+body.light .hero-pattern { opacity: 0.06; }
+
+/* ─── PAGE TRANSITIONS ─────────────────────────────────────── */
+.page {
+  animation: pageEnter 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+@keyframes pageEnter {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ─── PLAYER CARDS — accent bar + number watermark ────────── */
+.player-card {
+  position: relative;
+  overflow: hidden;
+}
+.player-card::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 3px;
+  background: var(--cookie);
+  border-radius: 3px 0 0 3px;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+.player-card:hover::before { opacity: 1; }
+.player-card::after {
+  content: attr(data-number);
+  position: absolute;
+  right: -6px; top: 50%;
+  transform: translateY(-50%);
+  font-family: var(--font-display);
+  font-size: 56px;
+  color: rgba(160,120,90,0.06);
+  letter-spacing: 2px;
+  pointer-events: none;
+  line-height: 1;
+}
+
+/* ─── LEADERBOARD — gold accent + crown ───────────────────── */
+.leader-card.gold {
+  border-color: rgba(212,175,55,0.15);
+  position: relative;
+  overflow: hidden;
+}
+.leader-card.gold::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #d4af37, transparent);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.leader-card.gold:hover::before { opacity: 1; }
+.leader-crown {
+  font-size: 12px;
+  position: absolute;
+  top: 8px; right: 10px;
+  opacity: 0.4;
+  transition: opacity 0.2s;
+}
+.leader-card.gold:hover .leader-crown { opacity: 1; }
+/* Gold accent on val when populated */
+.leader-card.gold .leader-val:not(:empty):not([textContent="—"]) {
+  color: #d4af37;
+}
+
+/* ─── ZEBRA STRIPING ON STATS TABLES ──────────────────────── */
+.stats-table tbody tr:nth-child(even) td {
+  background: rgba(255,255,255,0.02);
+}
+.stats-table tbody tr:hover td {
+  background: rgba(160,120,90,0.08) !important;
+}
+body.light .stats-table tbody tr:nth-child(even) td {
+  background: rgba(0,0,0,0.025);
+}
+body.light .stats-table tbody tr:hover td {
+  background: rgba(160,120,90,0.06) !important;
+}
+
+/* ─── COUNT-UP ANIMATION TARGET ───────────────────────────── */
+.countup { transition: all 0.1s; }
+
+/* ─── RESULTS PAGE — animated stat cards ──────────────────── */
+.results-stat-card {
+  transition: transform 0.2s, border-color 0.2s;
+}
+.results-stat-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(160,120,90,0.3);
+}
+.results-stat-val { transition: color 0.3s; }
+#res-wins   .results-stat-val { color: #5dcaa5; }
+#res-losses .results-stat-val { color: #f09595; }
+#res-pct    .results-stat-val { color: var(--cookie-light); }
+#res-streak .results-stat-val { color: var(--blue-bright); }
+
+/* ─── WIN RESULT BADGE — gold tint ────────────────────────── */
+.result-badge.win {
+  background: rgba(212,175,55,0.15);
+  color: #d4af37;
+  border-color: rgba(212,175,55,0.4);
+}
+
+/* ─── GOLD ACCENT COLOR VAR ───────────────────────────────── */
+:root { --gold: #d4af37; --gold-dim: rgba(212,175,55,0.15); }
+
+/* ─── LIGHT MODE additions ─────────────────────────────────── */
+body.light .leader-card.gold { background: #ffffff; }
+body.light #res-wins   .results-stat-val { color: #1a9e6e; }
+body.light #res-losses .results-stat-val { color: #c0392b; }
+

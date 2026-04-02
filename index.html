@@ -19,7 +19,7 @@
     <li><a class="nav-link active" data-page="home" href="#home" onclick="showPage('home')">Home</a></li>
     <li><a class="nav-link" data-page="news" href="#news" onclick="showPage('news')">News</a></li>
     <li class="nav-dropdown" id="stats-dropdown">
-      <a class="nav-link" data-page="stats" href="#batting" onclick="showStats('batting')">
+      <a class="nav-link" data-page="stats" href="#batting" onclick="showStatsNav()">
         Statistics <span class="dropdown-arrow">▾</span>
       </a>
       <div class="dropdown-menu">
@@ -32,9 +32,16 @@
         <a class="dropdown-item" data-tab="import"   href="#import"   onclick="showStats('import')">⬆ Import Spreadsheet</a>
       </div>
     </li>
-    <li><a class="nav-link" data-page="recaps" href="#recaps" onclick="showPage('recaps')">Season Recaps</a></li>
+    <li class="nav-dropdown" id="season-dropdown">
+      <a class="nav-link" data-page="season" href="#recaps" onclick="showPage('recaps')">
+        Season <span class="dropdown-arrow">▾</span>
+      </a>
+      <div class="dropdown-menu">
+        <a class="dropdown-item" data-page="results" href="#results" onclick="showPage('results')">Results</a>
+        <a class="dropdown-item" data-page="recaps"  href="#recaps"  onclick="showPage('recaps')">Season Recaps</a>
+      </div>
+    </li>
     <li><a class="nav-link" data-page="media" href="#media" onclick="showPage('media')">Media</a></li>
-    <li><a class="nav-link" data-page="results" href="#results" onclick="showPage('results')">Results</a></li>
     <li><a class="nav-link" data-page="roster" href="#roster" onclick="showPage('roster')">Roster</a></li>
     <li><a class="nav-link" data-page="about"  href="#about"  onclick="showPage('about')">About Us</a></li>
   </ul>
@@ -47,6 +54,7 @@
 <!-- HOME -->
 <main id="page-home" class="page active">
   <section class="hero hero-split">
+    <div class="hero-pattern"></div>
     <div class="hero-content">
       <div class="hero-tag">TWBL 2026 — Medium Pitch Division · DFW Area</div>
       <h1>COOKIE<br><span>MONSTERS</span></h1>
@@ -105,42 +113,50 @@
   <div class="leaderboard-section">
     <div class="leaderboard-title">2026 Team Leaders</div>
     <div class="leaderboard-grid" id="leaderboard-grid">
-      <div class="leader-card">
+      <div class="leader-card gold">
+        <div class="leader-crown">👑</div>
         <div class="leader-stat-name">Batting Avg</div>
         <div class="leader-name" id="leader-ba-name">—</div>
         <div class="leader-val" id="leader-ba-val">—</div>
       </div>
-      <div class="leader-card">
+      <div class="leader-card gold">
+        <div class="leader-crown">👑</div>
         <div class="leader-stat-name">Home Runs</div>
         <div class="leader-name" id="leader-hr-name">—</div>
         <div class="leader-val" id="leader-hr-val">—</div>
       </div>
-      <div class="leader-card">
+      <div class="leader-card gold">
+        <div class="leader-crown">👑</div>
         <div class="leader-stat-name">RBI</div>
         <div class="leader-name" id="leader-rbi-name">—</div>
         <div class="leader-val" id="leader-rbi-val">—</div>
       </div>
-      <div class="leader-card">
+      <div class="leader-card gold">
+        <div class="leader-crown">👑</div>
         <div class="leader-stat-name">OPS</div>
         <div class="leader-name" id="leader-ops-name">—</div>
         <div class="leader-val" id="leader-ops-val">—</div>
       </div>
-      <div class="leader-card">
+      <div class="leader-card gold">
+        <div class="leader-crown">👑</div>
         <div class="leader-stat-name">ERA</div>
         <div class="leader-name" id="leader-era-name">—</div>
         <div class="leader-val" id="leader-era-val">—</div>
       </div>
-      <div class="leader-card">
+      <div class="leader-card gold">
+        <div class="leader-crown">👑</div>
         <div class="leader-stat-name">Strikeouts</div>
         <div class="leader-name" id="leader-so-name">—</div>
         <div class="leader-val" id="leader-so-val">—</div>
       </div>
-      <div class="leader-card">
+      <div class="leader-card gold">
+        <div class="leader-crown">👑</div>
         <div class="leader-stat-name">WHIP</div>
         <div class="leader-name" id="leader-whip-name">—</div>
         <div class="leader-val" id="leader-whip-val">—</div>
       </div>
-      <div class="leader-card">
+      <div class="leader-card gold">
+        <div class="leader-crown">👑</div>
         <div class="leader-stat-name">WAR</div>
         <div class="leader-name" id="leader-war-name">—</div>
         <div class="leader-val" id="leader-war-val">—</div>
@@ -205,13 +221,13 @@
             <th>RBI</th><th>BB</th><th>SO</th><th>BA</th><th>OBP</th><th>SLG</th><th>OPS</th><th>OPS+</th><th>WOBA</th><th>TB</th><th>WAR</th>
           </tr></thead>
           <tbody id="tbody-batting">
-            <tr><td class="num">27</td><td class="name" onclick="showPlayer('harrell')">Garret Harrell</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
-            <tr><td class="num">10</td><td class="name" onclick="showPlayer('simpson')">Landon Simpson</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
-            <tr><td class="num">12</td><td class="name" onclick="showPlayer('wurzbach')">Logan Wurzbach</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
-            <tr><td class="num">14</td><td class="name" onclick="showPlayer('hightower')">Dylan Hightower</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
-            <tr><td class="num">19</td><td class="name" onclick="showPlayer('torres')">Zach Torres</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
-            <tr><td class="num">21</td><td class="name" onclick="showPlayer('davidson')">Landon Davidson</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
-            <tr><td class="num">55</td><td class="name" onclick="showPlayer('bischops')">Joshua Bischops</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+            <tr><td class="num">27</td><td class="name" onclick="showPlayer('harrell')" data-number="27">Garret Harrell</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+            <tr><td class="num">10</td><td class="name" onclick="showPlayer('simpson')" data-number="10">Landon Simpson</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+            <tr><td class="num">12</td><td class="name" onclick="showPlayer('wurzbach')" data-number="12">Logan Wurzbach</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+            <tr><td class="num">14</td><td class="name" onclick="showPlayer('hightower')" data-number="14">Dylan Hightower</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+            <tr><td class="num">19</td><td class="name" onclick="showPlayer('torres')" data-number="19">Zach Torres</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+            <tr><td class="num">21</td><td class="name" onclick="showPlayer('davidson')" data-number="21">Landon Davidson</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+            <tr><td class="num">55</td><td class="name" onclick="showPlayer('bischops')" data-number="55">Joshua Bischops</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
           </tbody>
         </table>
       </div>
@@ -229,13 +245,13 @@
             <th>R</th><th>ER</th><th>HR</th><th>BB</th><th>SO</th><th>BF</th><th>WHIP</th><th>SO/BB</th><th>WAR</th>
           </tr></thead>
           <tbody id="tbody-pitching">
-            <tr><td class="num">27</td><td class="name" onclick="showPlayer('harrell')">Garret Harrell</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
-            <tr><td class="num">10</td><td class="name" onclick="showPlayer('simpson')">Landon Simpson</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
-            <tr><td class="num">12</td><td class="name" onclick="showPlayer('wurzbach')">Logan Wurzbach</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
-            <tr><td class="num">14</td><td class="name" onclick="showPlayer('hightower')">Dylan Hightower</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
-            <tr><td class="num">19</td><td class="name" onclick="showPlayer('torres')">Zach Torres</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
-            <tr><td class="num">21</td><td class="name" onclick="showPlayer('davidson')">Landon Davidson</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
-            <tr><td class="num">55</td><td class="name" onclick="showPlayer('bischops')">Joshua Bischops</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+            <tr><td class="num">27</td><td class="name" onclick="showPlayer('harrell')" data-number="27">Garret Harrell</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+            <tr><td class="num">10</td><td class="name" onclick="showPlayer('simpson')" data-number="10">Landon Simpson</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+            <tr><td class="num">12</td><td class="name" onclick="showPlayer('wurzbach')" data-number="12">Logan Wurzbach</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+            <tr><td class="num">14</td><td class="name" onclick="showPlayer('hightower')" data-number="14">Dylan Hightower</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+            <tr><td class="num">19</td><td class="name" onclick="showPlayer('torres')" data-number="19">Zach Torres</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+            <tr><td class="num">21</td><td class="name" onclick="showPlayer('davidson')" data-number="21">Landon Davidson</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+            <tr><td class="num">55</td><td class="name" onclick="showPlayer('bischops')" data-number="55">Joshua Bischops</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
           </tbody>
         </table>
       </div>
@@ -251,13 +267,13 @@
             <th>#</th><th>Player</th><th>G</th><th>GS</th><th>Inn</th><th>CH</th><th>PO</th><th>A</th><th>E</th><th>DP</th><th>Fld%</th><th>RF/4</th><th>RF/G</th><th>POS</th><th>WAR</th>
           </tr></thead>
           <tbody id="tbody-fielding">
-            <tr><td class="num">27</td><td class="name" onclick="showPlayer('harrell')">Garret Harrell</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
-            <tr><td class="num">10</td><td class="name" onclick="showPlayer('simpson')">Landon Simpson</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
-            <tr><td class="num">12</td><td class="name" onclick="showPlayer('wurzbach')">Logan Wurzbach</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
-            <tr><td class="num">14</td><td class="name" onclick="showPlayer('hightower')">Dylan Hightower</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
-            <tr><td class="num">19</td><td class="name" onclick="showPlayer('torres')">Zach Torres</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
-            <tr><td class="num">21</td><td class="name" onclick="showPlayer('davidson')">Landon Davidson</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
-            <tr><td class="num">55</td><td class="name" onclick="showPlayer('bischops')">Joshua Bischops</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+            <tr><td class="num">27</td><td class="name" onclick="showPlayer('harrell')" data-number="27">Garret Harrell</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+            <tr><td class="num">10</td><td class="name" onclick="showPlayer('simpson')" data-number="10">Landon Simpson</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+            <tr><td class="num">12</td><td class="name" onclick="showPlayer('wurzbach')" data-number="12">Logan Wurzbach</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+            <tr><td class="num">14</td><td class="name" onclick="showPlayer('hightower')" data-number="14">Dylan Hightower</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+            <tr><td class="num">19</td><td class="name" onclick="showPlayer('torres')" data-number="19">Zach Torres</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+            <tr><td class="num">21</td><td class="name" onclick="showPlayer('davidson')" data-number="21">Landon Davidson</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+            <tr><td class="num">55</td><td class="name" onclick="showPlayer('bischops')" data-number="55">Joshua Bischops</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
           </tbody>
         </table>
       </div>
@@ -273,13 +289,13 @@
             <th>#</th><th>Player</th><th>BAbip</th><th>ISO</th><th>HR%</th><th>SO%</th><th>BB%</th><th>RS%</th><th>SOS%</th><th>SOL%</th>
           </tr></thead>
           <tbody id="tbody-advanced-bat">
-            <tr><td class="num">27</td><td class="name" onclick="showPlayer('harrell')">Garret Harrell</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
-            <tr><td class="num">10</td><td class="name" onclick="showPlayer('simpson')">Landon Simpson</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
-            <tr><td class="num">12</td><td class="name" onclick="showPlayer('wurzbach')">Logan Wurzbach</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
-            <tr><td class="num">14</td><td class="name" onclick="showPlayer('hightower')">Dylan Hightower</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
-            <tr><td class="num">19</td><td class="name" onclick="showPlayer('torres')">Zach Torres</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
-            <tr><td class="num">21</td><td class="name" onclick="showPlayer('davidson')">Landon Davidson</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
-            <tr><td class="num">55</td><td class="name" onclick="showPlayer('bischops')">Joshua Bischops</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+            <tr><td class="num">27</td><td class="name" onclick="showPlayer('harrell')" data-number="27">Garret Harrell</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+            <tr><td class="num">10</td><td class="name" onclick="showPlayer('simpson')" data-number="10">Landon Simpson</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+            <tr><td class="num">12</td><td class="name" onclick="showPlayer('wurzbach')" data-number="12">Logan Wurzbach</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+            <tr><td class="num">14</td><td class="name" onclick="showPlayer('hightower')" data-number="14">Dylan Hightower</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+            <tr><td class="num">19</td><td class="name" onclick="showPlayer('torres')" data-number="19">Zach Torres</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+            <tr><td class="num">21</td><td class="name" onclick="showPlayer('davidson')" data-number="21">Landon Davidson</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+            <tr><td class="num">55</td><td class="name" onclick="showPlayer('bischops')" data-number="55">Joshua Bischops</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
           </tbody>
         </table>
       </div>
@@ -290,13 +306,13 @@
             <th>#</th><th>Player</th><th>BA</th><th>OBP</th><th>SLG</th><th>OPS</th><th>BAbip</th>
           </tr></thead>
           <tbody id="tbody-advanced-pit">
-            <tr><td class="num">27</td><td class="name" onclick="showPlayer('harrell')">Garret Harrell</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
-            <tr><td class="num">10</td><td class="name" onclick="showPlayer('simpson')">Landon Simpson</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
-            <tr><td class="num">12</td><td class="name" onclick="showPlayer('wurzbach')">Logan Wurzbach</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
-            <tr><td class="num">14</td><td class="name" onclick="showPlayer('hightower')">Dylan Hightower</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
-            <tr><td class="num">19</td><td class="name" onclick="showPlayer('torres')">Zach Torres</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
-            <tr><td class="num">21</td><td class="name" onclick="showPlayer('davidson')">Landon Davidson</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
-            <tr><td class="num">55</td><td class="name" onclick="showPlayer('bischops')">Joshua Bischops</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+            <tr><td class="num">27</td><td class="name" onclick="showPlayer('harrell')" data-number="27">Garret Harrell</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+            <tr><td class="num">10</td><td class="name" onclick="showPlayer('simpson')" data-number="10">Landon Simpson</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+            <tr><td class="num">12</td><td class="name" onclick="showPlayer('wurzbach')" data-number="12">Logan Wurzbach</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+            <tr><td class="num">14</td><td class="name" onclick="showPlayer('hightower')" data-number="14">Dylan Hightower</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+            <tr><td class="num">19</td><td class="name" onclick="showPlayer('torres')" data-number="19">Zach Torres</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+            <tr><td class="num">21</td><td class="name" onclick="showPlayer('davidson')" data-number="21">Landon Davidson</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+            <tr><td class="num">55</td><td class="name" onclick="showPlayer('bischops')" data-number="55">Joshua Bischops</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
           </tbody>
         </table>
       </div>
@@ -516,37 +532,37 @@
 <main id="page-roster" class="page">
   <div class="page-header"><h2>2026 Roster</h2><p>Click any player to view their full profile and stats</p></div>
   <section class="roster-grid">
-    <div class="player-card" onclick="showPlayer('harrell')">
+    <div class="player-card" onclick="showPlayer('harrell')" data-number="27">
       <div class="player-avatar" style="border-color:#90caf9;">27</div>
       <div class="player-info"><div class="player-name-card">Garret Harrell</div><div class="player-meta"><span class="player-badge pb-vet">3rd Year</span><span class="player-badge pb-hand">R/R</span></div></div>
       <span class="player-arrow">→</span>
     </div>
-    <div class="player-card" onclick="showPlayer('simpson')">
+    <div class="player-card" onclick="showPlayer('simpson')" data-number="10">
       <div class="player-avatar">10</div>
       <div class="player-info"><div class="player-name-card">Landon Simpson</div><div class="player-meta"><span class="player-badge pb-year">2nd Year</span><span class="player-badge pb-hand">R/R</span></div></div>
       <span class="player-arrow">→</span>
     </div>
-    <div class="player-card" onclick="showPlayer('wurzbach')">
+    <div class="player-card" onclick="showPlayer('wurzbach')" data-number="12">
       <div class="player-avatar">12</div>
       <div class="player-info"><div class="player-name-card">Logan Wurzbach</div><div class="player-meta"><span class="player-badge pb-rook">Rookie</span><span class="player-badge pb-hand">R/R</span></div></div>
       <span class="player-arrow">→</span>
     </div>
-    <div class="player-card" onclick="showPlayer('hightower')">
+    <div class="player-card" onclick="showPlayer('hightower')" data-number="14">
       <div class="player-avatar">14</div>
       <div class="player-info"><div class="player-name-card">Dylan Hightower</div><div class="player-meta"><span class="player-badge pb-rook">Rookie</span><span class="player-badge pb-hand">L/L</span></div></div>
       <span class="player-arrow">→</span>
     </div>
-    <div class="player-card" onclick="showPlayer('torres')">
+    <div class="player-card" onclick="showPlayer('torres')" data-number="19">
       <div class="player-avatar">19</div>
       <div class="player-info"><div class="player-name-card">Zach Torres</div><div class="player-meta"><span class="player-badge pb-year">2nd Year</span><span class="player-badge pb-hand">L/L</span></div></div>
       <span class="player-arrow">→</span>
     </div>
-    <div class="player-card" onclick="showPlayer('davidson')">
+    <div class="player-card" onclick="showPlayer('davidson')" data-number="21">
       <div class="player-avatar">21</div>
       <div class="player-info"><div class="player-name-card">Landon Davidson</div><div class="player-meta"><span class="player-badge pb-year">2nd Year</span><span class="player-badge pb-hand">R/R</span></div></div>
       <span class="player-arrow">→</span>
     </div>
-    <div class="player-card featured" onclick="showPlayer('bischops')">
+    <div class="player-card featured" onclick="showPlayer('bischops')" data-number="55">
       <div class="player-avatar" style="border-color:var(--cookie-light);">55</div>
       <div class="player-info"><div class="player-name-card">Joshua Bischops</div><div class="player-meta"><span class="player-badge pb-rook">Rookie</span><span class="player-badge pb-hand">R/R</span></div></div>
       <span class="player-arrow">→</span>
@@ -594,13 +610,13 @@
   </div>
   <div class="roster-section-label">2026 Roster</div>
   <section class="roster-grid" style="padding-bottom:48px;">
-    <div class="player-card" onclick="showPlayer('harrell')"><div class="player-avatar" style="border-color:#90caf9;">27</div><div class="player-info"><div class="player-name-card">Garret Harrell</div><div class="player-meta"><span class="player-badge pb-vet">3rd Year</span><span class="player-badge pb-hand">R/R</span></div></div><span class="player-arrow">→</span></div>
-    <div class="player-card" onclick="showPlayer('simpson')"><div class="player-avatar">10</div><div class="player-info"><div class="player-name-card">Landon Simpson</div><div class="player-meta"><span class="player-badge pb-year">2nd Year</span><span class="player-badge pb-hand">R/R</span></div></div><span class="player-arrow">→</span></div>
-    <div class="player-card" onclick="showPlayer('wurzbach')"><div class="player-avatar">12</div><div class="player-info"><div class="player-name-card">Logan Wurzbach</div><div class="player-meta"><span class="player-badge pb-rook">Rookie</span><span class="player-badge pb-hand">R/R</span></div></div><span class="player-arrow">→</span></div>
-    <div class="player-card" onclick="showPlayer('hightower')"><div class="player-avatar">14</div><div class="player-info"><div class="player-name-card">Dylan Hightower</div><div class="player-meta"><span class="player-badge pb-rook">Rookie</span><span class="player-badge pb-hand">L/L</span></div></div><span class="player-arrow">→</span></div>
-    <div class="player-card" onclick="showPlayer('torres')"><div class="player-avatar">19</div><div class="player-info"><div class="player-name-card">Zach Torres</div><div class="player-meta"><span class="player-badge pb-year">2nd Year</span><span class="player-badge pb-hand">L/L</span></div></div><span class="player-arrow">→</span></div>
-    <div class="player-card" onclick="showPlayer('davidson')"><div class="player-avatar">21</div><div class="player-info"><div class="player-name-card">Landon Davidson</div><div class="player-meta"><span class="player-badge pb-year">2nd Year</span><span class="player-badge pb-hand">R/R</span></div></div><span class="player-arrow">→</span></div>
-    <div class="player-card featured" onclick="showPlayer('bischops')"><div class="player-avatar" style="border-color:var(--cookie-light);">55</div><div class="player-info"><div class="player-name-card">Joshua Bischops</div><div class="player-meta"><span class="player-badge pb-rook">Rookie</span><span class="player-badge pb-hand">R/R</span></div></div><span class="player-arrow">→</span></div>
+    <div class="player-card" onclick="showPlayer('harrell')" data-number="27"><div class="player-avatar" style="border-color:#90caf9;">27</div><div class="player-info"><div class="player-name-card">Garret Harrell</div><div class="player-meta"><span class="player-badge pb-vet">3rd Year</span><span class="player-badge pb-hand">R/R</span></div></div><span class="player-arrow">→</span></div>
+    <div class="player-card" onclick="showPlayer('simpson')" data-number="10"><div class="player-avatar">10</div><div class="player-info"><div class="player-name-card">Landon Simpson</div><div class="player-meta"><span class="player-badge pb-year">2nd Year</span><span class="player-badge pb-hand">R/R</span></div></div><span class="player-arrow">→</span></div>
+    <div class="player-card" onclick="showPlayer('wurzbach')" data-number="12"><div class="player-avatar">12</div><div class="player-info"><div class="player-name-card">Logan Wurzbach</div><div class="player-meta"><span class="player-badge pb-rook">Rookie</span><span class="player-badge pb-hand">R/R</span></div></div><span class="player-arrow">→</span></div>
+    <div class="player-card" onclick="showPlayer('hightower')" data-number="14"><div class="player-avatar">14</div><div class="player-info"><div class="player-name-card">Dylan Hightower</div><div class="player-meta"><span class="player-badge pb-rook">Rookie</span><span class="player-badge pb-hand">L/L</span></div></div><span class="player-arrow">→</span></div>
+    <div class="player-card" onclick="showPlayer('torres')" data-number="19"><div class="player-avatar">19</div><div class="player-info"><div class="player-name-card">Zach Torres</div><div class="player-meta"><span class="player-badge pb-year">2nd Year</span><span class="player-badge pb-hand">L/L</span></div></div><span class="player-arrow">→</span></div>
+    <div class="player-card" onclick="showPlayer('davidson')" data-number="21"><div class="player-avatar">21</div><div class="player-info"><div class="player-name-card">Landon Davidson</div><div class="player-meta"><span class="player-badge pb-year">2nd Year</span><span class="player-badge pb-hand">R/R</span></div></div><span class="player-arrow">→</span></div>
+    <div class="player-card featured" onclick="showPlayer('bischops')" data-number="55"><div class="player-avatar" style="border-color:var(--cookie-light);">55</div><div class="player-info"><div class="player-name-card">Joshua Bischops</div><div class="player-meta"><span class="player-badge pb-rook">Rookie</span><span class="player-badge pb-hand">R/R</span></div></div><span class="player-arrow">→</span></div>
   </section>
 </main>
 

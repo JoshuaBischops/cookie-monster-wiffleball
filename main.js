@@ -107,12 +107,12 @@ function showPage(id) {
 
 let currentStatTab = 'batting';
 
+// Called by top-level nav click — stays on current tab if already on stats page
+function showStatsNav() {
+  showStats(document.getElementById('page-stats')?.classList.contains('active') ? currentStatTab : 'batting');
+}
+
 function showStats(tab) {
-  // If clicking the top-level "Statistics" nav (tab === 'batting' as default),
-  // and we're already on the stats page, stay on current sub-tab
-  if (tab === 'batting' && document.getElementById('page-stats')?.classList.contains('active')) {
-    tab = currentStatTab;
-  }
   if (tab === 'import' && !importUnlocked) { promptImportPassword(); return; }
   currentStatTab = tab;
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
@@ -973,3 +973,97 @@ document.addEventListener('DOMContentLoaded', () => {
   initTheme();
   updateLastGame();
 });
+
+
+// ═══════════════════════════════════════════════════════════
+// COUNT-UP ANIMATION
+// ═══════════════════════════════════════════════════════════
+function countUp(el, target, duration = 800, isDecimal = false) {
+  if (!el || target === '—' || isNaN(parseFloat(target))) {
+    if (el) el.textContent = target;
+    return;
+  }
+  const end      = parseFloat(target);
+  const start    = 0;
+  const steps    = 40;
+  const stepTime = duration / steps;
+  let current    = start;
+  let step       = 0;
+
+  const timer = setInterval(() => {
+    step++;
+    current = start + (end - start) * (step / steps);
+    if (step >= steps) {
+      clearInterval(timer);
+      el.textContent = target; // use original string to preserve formatting
+    } else {
+      el.textContent = isDecimal
+        ? current.toFixed(3).replace(/^0/, '')
+        : Math.round(current).toString();
+    }
+  }, stepTime);
+}
+
+// Hook into updateResultsSummary to add count-up
+const _origUpdateSummary = updateResultsSummary;
+updateResultsSummary = function() {
+  _origUpdateSummary();
+  // Re-animate after values are set
+  setTimeout(() => {
+    const fields = [
+      ['res-wins',   false],
+      ['res-losses', false],
+      ['res-rs',     false],
+      ['res-ra',     false],
+    ];
+    fields.forEach(([id, dec]) => {
+      const el = document.getElementById(id);
+      if (el) countUp(el, el.textContent, 600, dec);
+    });
+  }, 50);
+};
+
+// Hook into updateLeaderboard to add count-up on values
+const _origUpdateLeader = updateLeaderboard;
+updateLeaderboard = function() {
+  _origUpdateLeader();
+  setTimeout(() => {
+    const keys = ['ba','hr','rbi','ops','era','so','whip','war'];
+    keys.forEach(key => {
+      const el = document.getElementById(`leader-${key}-val`);
+      if (el && el.textContent !== '—') {
+        const isDecimal = ['ba','ops','era','whip'].includes(key);
+        countUp(el, el.textContent, 700, isDecimal);
+      }
+    });
+  }, 50);
+};
+
+// Season dropdown — same logic as stats dropdown
+document.addEventListener('DOMContentLoaded', () => {
+  const seasonDd = document.getElementById('season-dropdown');
+  if (seasonDd) {
+    seasonDd.querySelector('.nav-link')?.addEventListener('click', e => {
+      e.preventDefault();
+      const open = seasonDd.classList.contains('open');
+      closeAllDropdowns();
+      if (!open) seasonDd.classList.add('open');
+    });
+  }
+});
+
+// Gold leader val color — update dynamically after leaderboard populates
+function applyGoldToLeaderVals() {
+  document.querySelectorAll('.leader-val').forEach(el => {
+    if (el.textContent && el.textContent !== '—') {
+      el.style.color = 'var(--gold)';
+    } else {
+      el.style.color = '';
+    }
+  });
+}
+const _origLeaderFinal = updateLeaderboard;
+updateLeaderboard = function() {
+  _origLeaderFinal();
+  setTimeout(applyGoldToLeaderVals, 900);
+};
