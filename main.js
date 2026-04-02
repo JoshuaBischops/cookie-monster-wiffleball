@@ -22,7 +22,7 @@ const PLAYERS = {
   },
   simpson: {
     number:'10', name:'Landon Simpson', year:'2nd Year', hand:'R/R',
-    position:'Pitcher / Infield', debutYear:'2026', height:"6'2", weight:'215',
+    position:'Pitcher / Infield', debutYear:'2025', height:"6'2", weight:'215',
     batting2025:  { G:'4',PA:'16',AB:'10',R:'4',H:'4','1B':'3','2B':'0','3B':'0',HR:'1',RBI:'3',BB:'4',SO:'2',BA:'.400',OBP:'.571',SLG:'.700',OPS:'1.271','OPS+':'158.9',WOBA:'.488',TB:'7',WAR:'2.49' },
     pitching2025: { W:'3',L:'0','W-L%':'.357',ERA:'4.00',G:'4',GS:'3',GF:'0',SV:'0',IP:'11.2',H:'4',R:'1',ER:'1',HR:'0',BB:'11',SO:'0',BF:'50',WHIP:'1.34','SO/BB':'0',WAR:'1.48' },
     fielding2025: { G:'4',GS:'4',Inn:'14',CH:'6',PO:'5',A:'0',E:'1',DP:'0','Fld%':'.833','RF/4':'1.43','RF/G':'1.25',POS:'IF,P,OF',WAR:'0.35' },
@@ -62,7 +62,7 @@ const PLAYERS = {
   },
   davidson: {
     number:'21', name:'Landon Davidson', year:'2nd Year', hand:'R/R',
-    position:'Pitcher', debutYear:'2026', nickname:'Lando', height:"5'8", weight:'130',
+    position:'Pitcher', debutYear:'2025', nickname:'Lando', height:"5'8", weight:'130',
     batting2025:  { G:'4',PA:'18',AB:'12',R:'3',H:'2','1B':'1','2B':'1','3B':'0',HR:'0',RBI:'3',BB:'4',SO:'7',BA:'.167',OBP:'.375',SLG:'.250',OPS:'.625','OPS+':'78.1',WOBA:'.289',TB:'3',WAR:'-0.32' },
     pitching2025: { W:'0',L:'0','W-L%':'—',ERA:'7.27',G:'2',GS:'0',GF:'0',SV:'1',IP:'1.1',H:'0',R:'0',ER:'2',HR:'0',BB:'7',SO:'2',BF:'11',WHIP:'6.36','SO/BB':'.29',WAR:'-0.24' },
     fielding2025: { G:'2',GS:'0',Inn:'1.1',CH:'0',PO:'0',A:'0',E:'0',DP:'0','Fld%':'—','RF/4':'0','RF/G':'0',POS:'P',WAR:'0' },
@@ -105,8 +105,16 @@ function showPage(id) {
   if (id === 'results') renderGameLog();
 }
 
+let currentStatTab = 'batting';
+
 function showStats(tab) {
+  // If clicking the top-level "Statistics" nav (tab === 'batting' as default),
+  // and we're already on the stats page, stay on current sub-tab
+  if (tab === 'batting' && document.getElementById('page-stats')?.classList.contains('active')) {
+    tab = currentStatTab;
+  }
   if (tab === 'import' && !importUnlocked) { promptImportPassword(); return; }
+  currentStatTab = tab;
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   document.querySelectorAll('.nav-link, .dropdown-item').forEach(l => l.classList.remove('active'));
   document.getElementById('page-stats')?.classList.add('active');
