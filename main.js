@@ -108,34 +108,9 @@ function showPage(id) {
 
 let currentStatTab = 'batting';
 
-// Called by top-level nav click — on mobile opens dropdown, on desktop navigates
-function showStatsNav() {
-  const isMobileOpen = document.getElementById('nav-links')?.classList.contains('open');
-  if (isMobileOpen) {
-    const dd = document.getElementById('stats-dropdown');
-    if (dd) {
-      const isOpen = dd.classList.contains('open');
-      closeAllDropdowns();
-      if (!isOpen) dd.classList.add('open');
-    }
-    return;
-  }
+// Desktop nav link for stats — stays on current tab if already on stats page
+function showStatsDesktop() {
   showStats(document.getElementById('page-stats')?.classList.contains('active') ? currentStatTab : 'batting');
-}
-
-// Season nav — toggles dropdown on mobile, navigates to recaps on desktop
-function showSeasonNav() {
-  const isMobileOpen = document.getElementById('nav-links')?.classList.contains('open');
-  if (isMobileOpen) {
-    const dd = document.getElementById('season-dropdown');
-    if (dd) {
-      const isOpen = dd.classList.contains('open');
-      closeAllDropdowns();
-      if (!isOpen) dd.classList.add('open');
-    }
-    return;
-  }
-  showPage('recaps');
 }
 
 function showStats(tab) {
@@ -182,10 +157,10 @@ document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('.nav-dropdown > .nav-link').forEach(btn => {
     btn.addEventListener('click', e => {
       e.preventDefault();
-      const dd = btn.closest('.nav-dropdown');
-      const open = dd.classList.contains('open');
+      const dd     = btn.closest('.nav-dropdown');
+      const isOpen = dd.classList.contains('open');
       closeAllDropdowns();
-      if (!open) dd.classList.add('open');
+      if (!isOpen) dd.classList.add('open');
     });
   });
   document.addEventListener('click', e => { if (!e.target.closest('.nav-dropdown')) closeAllDropdowns(); });
