@@ -232,6 +232,21 @@ footer{background:var(--black);border-top:1px solid rgba(160,120,90,0.2);padding
   .nav-links{display:none;}
   .nav-links.open{display:flex;flex-direction:column;position:absolute;top:58px;left:0;right:0;background:var(--black);padding:12px;border-bottom:1px solid var(--border);z-index:999;}
   .nav-hamburger{display:flex;}
+  /* Mobile dropdowns — expand inline instead of floating */
+  .nav-links.open .dropdown-menu {
+    position:static;
+    box-shadow:none;
+    border:none;
+    border-left:2px solid rgba(160,120,90,0.3);
+    border-radius:0;
+    background:transparent;
+    padding:0 0 4px 12px;
+    margin-top:4px;
+    display:none;
+  }
+  .nav-links.open .nav-dropdown.open .dropdown-menu { display:block; }
+  .nav-links.open .nav-link { width:100%; justify-content:space-between; }
+  .nav-links.open .dropdown-item { padding:8px 12px; font-size:13px; }
   .hero h1{font-size:44px;}
   .roster-grid{grid-template-columns:1fr;}
   .recap-card{flex-wrap:wrap;}

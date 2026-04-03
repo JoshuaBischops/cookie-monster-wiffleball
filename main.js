@@ -102,6 +102,7 @@ function showPage(id) {
   history.pushState(null, '', '#' + id);
   window.scrollTo(0, 0);
   closeAllDropdowns();
+  closeMobileMenu();
   if (id === 'results') renderGameLog();
 }
 
@@ -137,6 +138,7 @@ function showStats(tab) {
   history.pushState(null, '', '#' + tab);
   window.scrollTo(0, 0);
   closeAllDropdowns();
+  closeMobileMenu();
 }
 
 
@@ -145,6 +147,10 @@ function showStats(tab) {
 // ═══════════════════════════════════════════════════════════
 function closeAllDropdowns() {
   document.querySelectorAll('.nav-dropdown').forEach(d => d.classList.remove('open'));
+}
+
+function closeMobileMenu() {
+  document.getElementById('nav-links')?.classList.remove('open');
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -1065,6 +1071,11 @@ document.addEventListener('DOMContentLoaded', () => {
       if (!open) seasonDd.classList.add('open');
     });
   }
+
+  // Close mobile menu when any dropdown item is clicked
+  document.querySelectorAll('.dropdown-item').forEach(item => {
+    item.addEventListener('click', () => closeMobileMenu());
+  });
 });
 
 // Gold leader val color — update dynamically after leaderboard populates
