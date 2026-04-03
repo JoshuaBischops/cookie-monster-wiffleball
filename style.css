@@ -1473,15 +1473,15 @@ body.light .potg-number { color: rgba(212,175,55,0.15); }
 }
 .contact-logo-wrap {
   flex-shrink: 0;
-  width: 110px;
-  height: 110px;
+  width: 64px;
+  height: 64px;
   background: rgba(160,120,90,0.08);
   border-radius: 50%;
   border: 2px solid rgba(160,120,90,0.2);
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 12px;
+  padding: 8px;
 }
 .contact-logo { width: 100%; height: 100%; object-fit: contain; }
 .contact-tag {
