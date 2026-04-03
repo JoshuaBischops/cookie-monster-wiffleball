@@ -164,6 +164,42 @@
     <div class="leaderboard-note">Leaders update automatically when stats are imported</div>
   </div>
 
+
+  <!-- NEXT GAME + PLAYER OF THE GAME -->
+  <div class="home-middle-row">
+
+    <!-- NEXT GAME COUNTDOWN -->
+    <div class="next-game-card" id="next-game-card" style="display:none;">
+      <div class="next-game-label">Next Game</div>
+      <div class="next-game-opponent" id="ng-opponent">—</div>
+      <div class="next-game-meta" id="ng-meta">—</div>
+      <div class="countdown-row">
+        <div class="countdown-unit"><div class="countdown-val" id="cd-days">00</div><div class="countdown-label">Days</div></div>
+        <div class="countdown-sep">:</div>
+        <div class="countdown-unit"><div class="countdown-val" id="cd-hours">00</div><div class="countdown-label">Hrs</div></div>
+        <div class="countdown-sep">:</div>
+        <div class="countdown-unit"><div class="countdown-val" id="cd-mins">00</div><div class="countdown-label">Min</div></div>
+        <div class="countdown-sep">:</div>
+        <div class="countdown-unit"><div class="countdown-val" id="cd-secs">00</div><div class="countdown-label">Sec</div></div>
+      </div>
+      <div class="next-game-location" id="ng-location"></div>
+    </div>
+
+    <!-- PLAYER OF THE GAME -->
+    <div class="potg-card" id="potg-card" style="display:none;">
+      <div class="potg-label">⭐ Player of the Game</div>
+      <div class="potg-inner">
+        <div class="potg-number" id="potg-number">—</div>
+        <div class="potg-info">
+          <div class="potg-name" id="potg-name">—</div>
+          <div class="potg-game" id="potg-game">—</div>
+          <div class="potg-stats" id="potg-stats"></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
   <!-- LAST GAME SPOTLIGHT -->
   <div class="last-game-section" id="last-game-section" style="display:none;">
     <div class="last-game-label">Last Game</div>
@@ -726,6 +762,61 @@
       </div>
       <div id="admin-form-error" style="display:none;color:#f09595;font-size:12px;margin-bottom:10px;"></div>
       <button class="admin-submit-btn" onclick="adminAddGame()">+ Add Game</button>
+    </div>
+
+    <!-- Next Game -->
+    <div class="admin-section">
+      <div class="admin-section-title">Set Next Game</div>
+      <div class="admin-form-grid">
+        <div class="admin-field">
+          <label>Date &amp; Time</label>
+          <input type="datetime-local" id="admin-ng-datetime"/>
+        </div>
+        <div class="admin-field">
+          <label>Opponent</label>
+          <input type="text" id="admin-ng-opponent" placeholder="e.g. The Sluggers"/>
+        </div>
+        <div class="admin-field" style="grid-column:1/-1;">
+          <label>Location (optional)</label>
+          <input type="text" id="admin-ng-location" placeholder="e.g. Burleson Sports Complex"/>
+        </div>
+      </div>
+      <div style="display:flex;gap:10px;">
+        <button class="admin-submit-btn" onclick="adminSetNextGame()">Set Next Game</button>
+        <button class="admin-submit-btn" style="background:rgba(226,75,74,0.3);color:#f09595;" onclick="adminClearNextGame()">Clear</button>
+      </div>
+    </div>
+
+    <!-- Player of the Game -->
+    <div class="admin-section">
+      <div class="admin-section-title">Set Player of the Game</div>
+      <div class="admin-form-grid">
+        <div class="admin-field">
+          <label>Player</label>
+          <select id="admin-potg-player">
+            <option value="">— Select Player —</option>
+            <option value="harrell">Garret Harrell (#27)</option>
+            <option value="simpson">Landon Simpson (#10)</option>
+            <option value="wurzbach">Logan Wurzbach (#12)</option>
+            <option value="hightower">Dylan Hightower (#14)</option>
+            <option value="torres">Zach Torres (#19)</option>
+            <option value="davidson">Landon Davidson (#21)</option>
+            <option value="bischops">Joshua Bischops (#55)</option>
+          </select>
+        </div>
+        <div class="admin-field">
+          <label>Game (e.g. vs. Sluggers)</label>
+          <input type="text" id="admin-potg-game" placeholder="vs. The Sluggers — W 8-3"/>
+        </div>
+        <div class="admin-field" style="grid-column:1/-1;">
+          <label>Key Stats (e.g. 3-4, 2 HR, 4 RBI)</label>
+          <input type="text" id="admin-potg-stats" placeholder="3-4, 2 HR, 4 RBI, 1.000 OPS"/>
+        </div>
+      </div>
+      <div style="display:flex;gap:10px;">
+        <button class="admin-submit-btn" onclick="adminSetPOTG()">Set POTG</button>
+        <button class="admin-submit-btn" style="background:rgba(226,75,74,0.3);color:#f09595;" onclick="adminClearPOTG()">Clear</button>
+      </div>
     </div>
 
     <!-- Existing Games -->

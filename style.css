@@ -314,8 +314,15 @@ footer{background:var(--black);border-top:1px solid rgba(160,120,90,0.2);padding
   grid-template-columns: 1fr 280px;
   gap: 20px;
   padding: 20px 48px 0;
+  max-width: 1100px;
 }
-.yt-feature { }
+.yt-feature {
+  max-width: 720px;
+}
+.yt-feature iframe {
+  max-width: 100%;
+  max-height: 405px;
+}
 .yt-embed-placeholder {
   background: var(--card-bg);
   border: 1px solid var(--border);
@@ -1280,3 +1287,159 @@ body.light #res-losses .results-stat-val { color: #c0392b; }
   transition: transform 0.35s ease;
 }
 .gallery-item:hover img { transform: scale(1.04); }
+
+/* ─── HOME MIDDLE ROW ─────────────────────────────────────── */
+.home-middle-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  padding: 8px 48px 0;
+}
+
+/* ─── NEXT GAME COUNTDOWN ─────────────────────────────────── */
+.next-game-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 24px 28px;
+  position: relative;
+  overflow: hidden;
+}
+.next-game-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--blue), var(--cookie-light));
+}
+.next-game-label {
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--blue-bright);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.next-game-opponent {
+  font-family: var(--font-display);
+  font-size: 26px;
+  letter-spacing: 1.5px;
+  color: var(--white);
+  margin-bottom: 4px;
+}
+.next-game-meta {
+  font-size: 12px;
+  color: var(--gray);
+  margin-bottom: 20px;
+}
+.countdown-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.countdown-unit {
+  text-align: center;
+  min-width: 52px;
+  background: rgba(255,255,255,0.04);
+  border-radius: 8px;
+  padding: 8px 6px;
+  border: 1px solid var(--border);
+}
+.countdown-val {
+  font-family: var(--font-display);
+  font-size: 32px;
+  letter-spacing: 2px;
+  color: var(--cookie-light);
+  line-height: 1;
+}
+.countdown-label {
+  font-size: 9px;
+  color: var(--gray);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-top: 3px;
+}
+.countdown-sep {
+  font-family: var(--font-display);
+  font-size: 24px;
+  color: var(--gray);
+  line-height: 1;
+  margin-top: -8px;
+}
+.next-game-location {
+  font-size: 12px;
+  color: var(--gray);
+  margin-top: 12px;
+  font-style: italic;
+}
+
+/* ─── PLAYER OF THE GAME ──────────────────────────────────── */
+.potg-card {
+  background: var(--card-bg);
+  border: 1px solid rgba(212,175,55,0.25);
+  border-radius: 12px;
+  padding: 24px 28px;
+  position: relative;
+  overflow: hidden;
+}
+.potg-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--gold), var(--cookie-light));
+}
+.potg-label {
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--gold);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+.potg-inner {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.potg-number {
+  font-family: var(--font-display);
+  font-size: 64px;
+  color: rgba(212,175,55,0.2);
+  letter-spacing: 2px;
+  line-height: 1;
+  min-width: 80px;
+  text-align: center;
+}
+.potg-name {
+  font-family: var(--font-display);
+  font-size: 28px;
+  letter-spacing: 1.5px;
+  color: var(--white);
+  margin-bottom: 4px;
+}
+.potg-game {
+  font-size: 12px;
+  color: var(--gray);
+  margin-bottom: 10px;
+}
+.potg-stats {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--gold);
+  letter-spacing: 0.5px;
+}
+
+/* ─── Light mode additions ────────────────────────────────── */
+body.light .next-game-card,
+body.light .potg-card { background: #ffffff; }
+body.light .countdown-unit { background: rgba(0,0,0,0.03); }
+body.light .next-game-opponent,
+body.light .potg-name { color: #1c2333; }
+body.light .potg-number { color: rgba(212,175,55,0.15); }
+
+/* ─── Responsive ──────────────────────────────────────────── */
+@media(max-width:900px){
+  .home-middle-row { grid-template-columns: 1fr; padding: 8px 24px 0; }
+  .countdown-val { font-size: 26px; }
+}

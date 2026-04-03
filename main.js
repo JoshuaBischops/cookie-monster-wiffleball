@@ -1082,3 +1082,110 @@ updateLeaderboard = function() {
   _origLeaderFinal();
   setTimeout(applyGoldToLeaderVals, 900);
 };
+
+
+// ═══════════════════════════════════════════════════════════
+// NEXT GAME COUNTDOWN
+// ═══════════════════════════════════════════════════════════
+let nextGameData   = JSON.parse(localStorage.getItem('cm-next-game')   || 'null');
+let countdownTimer = null;
+
+function adminSetNextGame() {
+  const dt       = document.getElementById('admin-ng-datetime').value;
+  const opponent = document.getElementById('admin-ng-opponent').value.trim();
+  const location = document.getElementById('admin-ng-location').value.trim();
+  if (!dt || !opponent) { alert('Date/time and opponent are required.'); return; }
+  nextGameData = { datetime: dt, opponent, location };
+  localStorage.setItem('cm-next-game', JSON.stringify(nextGameData));
+  renderNextGame();
+  alert('Next game set!');
+}
+
+function adminClearNextGame() {
+  nextGameData = null;
+  localStorage.removeItem('cm-next-game');
+  document.getElementById('next-game-card').style.display = 'none';
+  clearInterval(countdownTimer);
+}
+
+function renderNextGame() {
+  const card = document.getElementById('next-game-card');
+  if (!nextGameData || !card) return;
+
+  card.style.display = 'block';
+  document.getElementById('ng-opponent').textContent = `vs. ${nextGameData.opponent}`;
+
+  const dt      = new Date(nextGameData.datetime);
+  const dateStr = dt.toLocaleDateString('en-US', { weekday:'short', month:'short', day:'numeric', year:'numeric' });
+  const timeStr = dt.toLocaleTimeString('en-US', { hour:'numeric', minute:'2-digit' });
+  document.getElementById('ng-meta').textContent = `${dateStr} · ${timeStr}`;
+  document.getElementById('ng-location').textContent = nextGameData.location || '';
+
+  // Start live countdown
+  clearInterval(countdownTimer);
+  function tick() {
+    const now  = new Date();
+    const diff = dt - now;
+    if (diff <= 0) {
+      ['cd-days','cd-hours','cd-mins','cd-secs'].forEach(id => {
+        document.getElementById(id).textContent = '00';
+      });
+      clearInterval(countdownTimer);
+      return;
+    }
+    const days  = Math.floor(diff / 86400000);
+    const hours = Math.floor((diff % 86400000) / 3600000);
+    const mins  = Math.floor((diff % 3600000)  / 60000);
+    const secs  = Math.floor((diff % 60000)    / 1000);
+    document.getElementById('cd-days').textContent  = String(days).padStart(2,'0');
+    document.getElementById('cd-hours').textContent = String(hours).padStart(2,'0');
+    document.getElementById('cd-mins').textContent  = String(mins).padStart(2,'0');
+    document.getElementById('cd-secs').textContent  = String(secs).padStart(2,'0');
+  }
+  tick();
+  countdownTimer = setInterval(tick, 1000);
+}
+
+
+// ═══════════════════════════════════════════════════════════
+// PLAYER OF THE GAME
+// ═══════════════════════════════════════════════════════════
+let potgData = JSON.parse(localStorage.getItem('cm-potg') || 'null');
+
+function adminSetPOTG() {
+  const playerKey = document.getElementById('admin-potg-player').value;
+  const game      = document.getElementById('admin-potg-game').value.trim();
+  const stats     = document.getElementById('admin-potg-stats').value.trim();
+  if (!playerKey) { alert('Select a player.'); return; }
+  const p = PLAYERS[playerKey];
+  if (!p) return;
+  potgData = { playerKey, name: p.name, number: p.number, game, stats };
+  localStorage.setItem('cm-potg', JSON.stringify(potgData));
+  renderPOTG();
+  alert('Player of the Game set!');
+}
+
+function adminClearPOTG() {
+  potgData = null;
+  localStorage.removeItem('cm-potg');
+  document.getElementById('potg-card').style.display = 'none';
+}
+
+function renderPOTG() {
+  const card = document.getElementById('potg-card');
+  if (!potgData || !card) return;
+  card.style.display = 'block';
+  document.getElementById('potg-number').textContent = `#${potgData.number}`;
+  document.getElementById('potg-name').textContent   = potgData.name;
+  document.getElementById('potg-game').textContent   = potgData.game  || '';
+  document.getElementById('potg-stats').textContent  = potgData.stats || '';
+}
+
+
+// ═══════════════════════════════════════════════════════════
+// INIT BOTH ON PAGE LOAD
+// ═══════════════════════════════════════════════════════════
+document.addEventListener('DOMContentLoaded', () => {
+  renderNextGame();
+  renderPOTG();
+});
