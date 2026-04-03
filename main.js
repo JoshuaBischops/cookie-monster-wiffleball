@@ -108,9 +108,34 @@ function showPage(id) {
 
 let currentStatTab = 'batting';
 
-// Called by top-level nav click — stays on current tab if already on stats page
+// Called by top-level nav click — on mobile opens dropdown, on desktop navigates
 function showStatsNav() {
+  const isMobileOpen = document.getElementById('nav-links')?.classList.contains('open');
+  if (isMobileOpen) {
+    const dd = document.getElementById('stats-dropdown');
+    if (dd) {
+      const isOpen = dd.classList.contains('open');
+      closeAllDropdowns();
+      if (!isOpen) dd.classList.add('open');
+    }
+    return;
+  }
   showStats(document.getElementById('page-stats')?.classList.contains('active') ? currentStatTab : 'batting');
+}
+
+// Season nav — toggles dropdown on mobile, navigates to recaps on desktop
+function showSeasonNav() {
+  const isMobileOpen = document.getElementById('nav-links')?.classList.contains('open');
+  if (isMobileOpen) {
+    const dd = document.getElementById('season-dropdown');
+    if (dd) {
+      const isOpen = dd.classList.contains('open');
+      closeAllDropdowns();
+      if (!isOpen) dd.classList.add('open');
+    }
+    return;
+  }
+  showPage('recaps');
 }
 
 function showStats(tab) {
