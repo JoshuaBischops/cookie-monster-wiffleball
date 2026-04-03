@@ -416,11 +416,14 @@
   <div class="media-section-label">Latest from YouTube</div>
   <div class="youtube-section">
     <div class="yt-feature">
-      <div class="yt-embed-placeholder">
-        <div class="yt-play-icon">▶</div>
-        <div class="yt-placeholder-text">Latest Video</div>
-        <div class="yt-placeholder-sub">Subscribe at <a href="https://www.youtube.com/@CookieMonstersWiffle" target="_blank" rel="noopener">@CookieMonstersWiffle</a></div>
-      </div>
+      <iframe
+        src="https://www.youtube.com/embed/PfHIUKEE9QQ?start=68"
+        title="Cookie Monsters — Latest Video"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen
+        style="width:100%;aspect-ratio:16/9;border-radius:12px;border:1px solid var(--border);">
+      </iframe>
     </div>
     <div class="yt-thumbnails" id="yt-thumbnails">
       <div class="yt-thumb-card"><div class="yt-thumb-img"></div><div class="yt-thumb-label">Game Highlights</div></div>
@@ -537,12 +540,12 @@
       <span class="player-arrow">→</span>
     </div>
     <div class="player-card" onclick="showPlayer('simpson')" data-number="10">
-      <div class="player-avatar player-avatar-img"><img src="assets/SimpsonProfilePC.jpg" alt="Landon Simpson"/></div>
+      <div class="player-avatar">10</div>
       <div class="player-info"><div class="player-name-card">Landon Simpson</div><div class="player-meta"><span class="player-badge pb-year">2nd Year</span><span class="player-badge pb-hand">R/R</span></div></div>
       <span class="player-arrow">→</span>
     </div>
     <div class="player-card" onclick="showPlayer('wurzbach')" data-number="12">
-      <div class="player-avatar player-avatar-img"><img src="assets/LoganProfilePic.jpg" alt="Logan Wurzbach"/></div>
+      <div class="player-avatar">12</div>
       <div class="player-info"><div class="player-name-card">Logan Wurzbach</div><div class="player-meta"><span class="player-badge pb-rook">Rookie</span><span class="player-badge pb-hand">R/R</span></div></div>
       <span class="player-arrow">→</span>
     </div>
@@ -557,7 +560,7 @@
       <span class="player-arrow">→</span>
     </div>
     <div class="player-card" onclick="showPlayer('davidson')" data-number="21">
-      <div class="player-avatar player-avatar-img"><img src="assets/DavidsonProfilePic.jpg" alt="Landon Davidson"/></div>
+      <div class="player-avatar">21</div>
       <div class="player-info"><div class="player-name-card">Landon Davidson</div><div class="player-meta"><span class="player-badge pb-year">2nd Year</span><span class="player-badge pb-hand">R/R</span></div></div>
       <span class="player-arrow">→</span>
     </div>
@@ -576,7 +579,6 @@
     <button class="share-profile-btn" onclick="openShareCard()">⬆ Share Card</button>
   </div>
   <div class="player-profile-hero">
-    <div class="profile-photo-circle" id="profile-photo"><span style="font-family:var(--font-display);font-size:28px;color:var(--cookie-light);">—</span></div>
     <div class="profile-number" id="profile-number">55</div>
     <div class="profile-header-info">
       <h2 id="profile-name">Player Name</h2>

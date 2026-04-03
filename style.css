@@ -714,7 +714,7 @@ footer { position: relative; }
   position: relative;
   border-radius: 14px;
   overflow: hidden;
-  aspect-ratio: 4/3;
+  height: 480px;
   background: var(--card-bg);
   border: 1px solid var(--border);
 }
@@ -722,19 +722,24 @@ footer { position: relative; }
   display: flex;
   width: 100%;
   height: 100%;
-  transition: transform 0.5s ease;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .slide {
   min-width: 100%;
   height: 100%;
   flex-shrink: 0;
+  overflow: hidden;
+  position: relative;
 }
 .slide img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center top;
   display: block;
+  transition: transform 0.6s ease;
 }
+.slide:hover img { transform: scale(1.02); }
 .slide-placeholder {
   display: flex;
   align-items: center;
@@ -826,7 +831,7 @@ footer { position: relative; }
 @media(max-width:1000px){
   .hero-split { grid-template-columns: 1fr; gap: 28px; }
   .hero-split h1 { font-size: 56px; }
-  .hero-slideshow { aspect-ratio: 16/9; }
+  .hero-slideshow { height: 320px; }
 }
 @media(max-width:600px){
   .ig-posts-grid { grid-template-columns: 1fr; }
@@ -1267,42 +1272,9 @@ body.light #res-losses .results-stat-val { color: #c0392b; }
 
 
 
-/* ─── PLAYER AVATAR WITH PHOTO ────────────────────────────── */
-.player-avatar-img {
-  overflow: hidden;
-  padding: 0;
-  background: var(--navy-light);
-}
-.player-avatar-img img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: top center;
-  border-radius: 50%;
-  display: block;
-}
 
-/* ─── PROFILE PAGE PHOTO CIRCLE ───────────────────────────── */
-.profile-photo-circle {
-  width: 90px;
-  height: 90px;
-  border-radius: 50%;
-  border: 3px solid var(--cookie);
-  background: var(--navy-light);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  flex-shrink: 0;
-}
-.profile-photo-circle img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: top center;
-}
 
-/* ─── GALLERY REAL IMAGES ─────────────────────────────────── */
+/* ─── GALLERY IMAGES ──────────────────────────────────────── */
 .gallery-item img {
   width: 100%;
   height: 100%;
