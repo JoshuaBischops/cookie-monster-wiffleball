@@ -2,7 +2,7 @@
 // PASSWORDS — change these to whatever you want
 // ═══════════════════════════════════════════════════════════
 const IMPORT_PASSWORD = 'cookiemonsters2026';
-const ADMIN_PASSWORD  = 'cm-admin-2026';
+const ADMIN_PASSWORD  = 'cookiemonsters2026';
 
 // ═══════════════════════════════════════════════════════════
 // PLAYER DATA — career splits per year
