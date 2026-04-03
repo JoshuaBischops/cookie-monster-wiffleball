@@ -1264,3 +1264,50 @@ body.light .leader-card.gold { background: #ffffff; }
 body.light #res-wins   .results-stat-val { color: #1a9e6e; }
 body.light #res-losses .results-stat-val { color: #c0392b; }
 
+
+
+
+/* ─── PLAYER AVATAR WITH PHOTO ────────────────────────────── */
+.player-avatar-img {
+  overflow: hidden;
+  padding: 0;
+  background: var(--navy-light);
+}
+.player-avatar-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  border-radius: 50%;
+  display: block;
+}
+
+/* ─── PROFILE PAGE PHOTO CIRCLE ───────────────────────────── */
+.profile-photo-circle {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  border: 3px solid var(--cookie);
+  background: var(--navy-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.profile-photo-circle img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+}
+
+/* ─── GALLERY REAL IMAGES ─────────────────────────────────── */
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.35s ease;
+}
+.gallery-item:hover img { transform: scale(1.04); }

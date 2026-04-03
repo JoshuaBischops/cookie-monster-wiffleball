@@ -66,13 +66,12 @@
     </div>
     <div class="hero-slideshow">
       <div class="slideshow-track" id="slideshow-track">
-        <!-- SLIDESHOW PHOTOS — add your images here as <div class="slide"><img src="assets/your-photo.jpg" alt=""/></div> -->
-        <div class="slide slide-placeholder">
-          <div class="slide-placeholder-inner">
-            <div style="font-size:36px;opacity:0.3;">📸</div>
-            <div style="font-size:12px;color:var(--gray);margin-top:8px;">Photos coming soon</div>
-          </div>
-        </div>
+        <div class="slide"><img src="assets/MediaPic5.jpg" alt="Cookie Monsters"/></div>
+        <div class="slide"><img src="assets/MediaPic7.jpg" alt="Cookie Monsters"/></div>
+        <div class="slide"><img src="assets/MediaPic1.jpg" alt="Cookie Monsters"/></div>
+        <div class="slide"><img src="assets/MediaPic4.jpg" alt="Cookie Monsters"/></div>
+        <div class="slide"><img src="assets/MediaPic3.jpg" alt="Cookie Monsters"/></div>
+        <div class="slide"><img src="assets/MediaPic8.jpg" alt="Cookie Monsters"/></div>
       </div>
       <div class="slideshow-dots" id="slideshow-dots"></div>
       <button class="slideshow-nav prev" onclick="slideshowNav(-1)">‹</button>
@@ -538,12 +537,12 @@
       <span class="player-arrow">→</span>
     </div>
     <div class="player-card" onclick="showPlayer('simpson')" data-number="10">
-      <div class="player-avatar">10</div>
+      <div class="player-avatar player-avatar-img"><img src="assets/SimpsonProfilePC.jpg" alt="Landon Simpson"/></div>
       <div class="player-info"><div class="player-name-card">Landon Simpson</div><div class="player-meta"><span class="player-badge pb-year">2nd Year</span><span class="player-badge pb-hand">R/R</span></div></div>
       <span class="player-arrow">→</span>
     </div>
     <div class="player-card" onclick="showPlayer('wurzbach')" data-number="12">
-      <div class="player-avatar">12</div>
+      <div class="player-avatar player-avatar-img"><img src="assets/LoganProfilePic.jpg" alt="Logan Wurzbach"/></div>
       <div class="player-info"><div class="player-name-card">Logan Wurzbach</div><div class="player-meta"><span class="player-badge pb-rook">Rookie</span><span class="player-badge pb-hand">R/R</span></div></div>
       <span class="player-arrow">→</span>
     </div>
@@ -558,7 +557,7 @@
       <span class="player-arrow">→</span>
     </div>
     <div class="player-card" onclick="showPlayer('davidson')" data-number="21">
-      <div class="player-avatar">21</div>
+      <div class="player-avatar player-avatar-img"><img src="assets/DavidsonProfilePic.jpg" alt="Landon Davidson"/></div>
       <div class="player-info"><div class="player-name-card">Landon Davidson</div><div class="player-meta"><span class="player-badge pb-year">2nd Year</span><span class="player-badge pb-hand">R/R</span></div></div>
       <span class="player-arrow">→</span>
     </div>
@@ -577,6 +576,7 @@
     <button class="share-profile-btn" onclick="openShareCard()">⬆ Share Card</button>
   </div>
   <div class="player-profile-hero">
+    <div class="profile-photo-circle" id="profile-photo"><span style="font-family:var(--font-display);font-size:28px;color:var(--cookie-light);">—</span></div>
     <div class="profile-number" id="profile-number">55</div>
     <div class="profile-header-info">
       <h2 id="profile-name">Player Name</h2>
