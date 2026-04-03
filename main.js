@@ -773,13 +773,23 @@ let slideTotal   = 0;
 let slideTimer   = null;
 
 function initSlideshow() {
-  const track  = document.getElementById('slideshow-track');
-  const dots   = document.getElementById('slideshow-dots');
+  const track = document.getElementById('slideshow-track');
+  const dots  = document.getElementById('slideshow-dots');
   if (!track) return;
 
-  const slides = track.querySelectorAll('.slide');
-  slideTotal   = slides.length;
-  if (slideTotal <= 1) return; // nothing to cycle if 0 or 1 slide
+  const slides = Array.from(track.querySelectorAll('.slide'));
+  slideTotal = slides.length;
+  if (slideTotal <= 1) return;
+
+  // Position all slides absolutely so they stack
+  track.style.position = 'relative';
+  slides.forEach((slide, i) => {
+    slide.style.position   = 'absolute';
+    slide.style.inset      = '0';
+    slide.style.opacity    = i === 0 ? '1' : '0';
+    slide.style.transition = 'opacity 0.7s ease';
+    slide.style.minWidth   = '100%';
+  });
 
   // Build dots
   dots.innerHTML = '';
@@ -794,9 +804,14 @@ function initSlideshow() {
 }
 
 function goToSlide(idx) {
-  slideIndex = (idx + slideTotal) % slideTotal;
   const track = document.getElementById('slideshow-track');
-  if (track) track.style.transform = `translateX(-${slideIndex * 100}%)`;
+  if (!track) return;
+  const slides = Array.from(track.querySelectorAll('.slide'));
+  slideIndex = (idx + slideTotal) % slideTotal;
+
+  slides.forEach((slide, i) => {
+    slide.style.opacity = i === slideIndex ? '1' : '0';
+  });
   document.querySelectorAll('.slideshow-dot').forEach((d, i) => {
     d.classList.toggle('active', i === slideIndex);
   });
@@ -811,7 +826,7 @@ function slideshowNav(dir) {
 function startSlideTimer() {
   clearTimeout(slideTimer);
   if (slideTotal > 1) {
-    slideTimer = setTimeout(() => { goToSlide(slideIndex + 1); startSlideTimer(); }, 4000);
+    slideTimer = setTimeout(() => { goToSlide(slideIndex + 1); startSlideTimer(); }, 4500);
   }
 }
 
