@@ -153,54 +153,9 @@ function closeMobileMenu() {
   document.getElementById('nav-links')?.classList.remove('open');
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-  document.querySelectorAll('.nav-dropdown > .nav-link').forEach(btn => {
-    btn.addEventListener('click', e => {
-      e.preventDefault();
-      const dd     = btn.closest('.nav-dropdown');
-      const isOpen = dd.classList.contains('open');
-      closeAllDropdowns();
-      if (!isOpen) dd.classList.add('open');
-    });
-  });
-  document.addEventListener('click', e => { if (!e.target.closest('.nav-dropdown')) closeAllDropdowns(); });
 
-  document.getElementById('hamburger')?.addEventListener('click', () => {
-    document.getElementById('nav-links').classList.toggle('open');
-  });
 
-  document.getElementById('import-lock-input')?.addEventListener('keydown', e => {
-    if (e.key === 'Enter')  submitImportPassword();
-    if (e.key === 'Escape') closeImportLock();
-  });
-  document.getElementById('admin-lock-input')?.addEventListener('keydown', e => {
-    if (e.key === 'Enter')  submitAdminPassword();
-    if (e.key === 'Escape') closeAdminLock();
-  });
 
-  // CSV drag/drop
-  const dropZone  = document.getElementById('drop-zone');
-  const fileInput = document.getElementById('csv-file-input');
-  dropZone?.addEventListener('click', () => fileInput.click());
-  fileInput?.addEventListener('change', () => handleFile(fileInput.files[0]));
-  dropZone?.addEventListener('dragover', e => { e.preventDefault(); dropZone.style.borderColor='var(--cookie)'; });
-  dropZone?.addEventListener('dragleave', () => { dropZone.style.borderColor=''; });
-  dropZone?.addEventListener('drop', e => { e.preventDefault(); dropZone.style.borderColor=''; handleFile(e.dataTransfer.files[0]); });
-
-  // Sortable table headers
-  document.querySelectorAll('.stats-table th').forEach(th => {
-    th.addEventListener('click', () => sortTable(th));
-  });
-
-  // Gallery
-  initGallery();
-
-  // Render game log on load
-  renderGameLog();
-  updateHomeRecord();
-
-  routeFromHash();
-});
 
 function routeFromHash() {
   const hash = window.location.hash.replace('#', '') || 'home';
@@ -212,8 +167,6 @@ function routeFromHash() {
     showPage(hash);
   }
 }
-window.addEventListener('popstate', routeFromHash);
-
 
 // ═══════════════════════════════════════════════════════════
 // SORTABLE STATS TABLES
@@ -836,7 +789,7 @@ function startSlideTimer() {
   }
 }
 
-document.addEventListener('DOMContentLoaded', initSlideshow);
+
 
 
 // ═══════════════════════════════════════════════════════════
@@ -990,10 +943,7 @@ renderGameLog = function() {
 // ═══════════════════════════════════════════════════════════
 // INIT
 // ═══════════════════════════════════════════════════════════
-document.addEventListener('DOMContentLoaded', () => {
-  initTheme();
-  updateLastGame();
-});
+
 
 
 // ═══════════════════════════════════════════════════════════
@@ -1060,12 +1010,7 @@ updateLeaderboard = function() {
   }, 50);
 };
 
-// Close mobile menu when any dropdown item is clicked
-document.addEventListener('DOMContentLoaded', () => {
-  document.querySelectorAll('.dropdown-item').forEach(item => {
-    item.addEventListener('click', () => closeMobileMenu());
-  });
-});
+
 
 // Gold leader val color — update dynamically after leaderboard populates
 function applyGoldToLeaderVals() {
@@ -1182,13 +1127,7 @@ function renderPOTG() {
 }
 
 
-// ═══════════════════════════════════════════════════════════
-// INIT BOTH ON PAGE LOAD
-// ═══════════════════════════════════════════════════════════
-document.addEventListener('DOMContentLoaded', () => {
-  renderNextGame();
-  renderPOTG();
-});
+
 
 
 // ═══════════════════════════════════════════════════════════
@@ -1292,3 +1231,91 @@ function closeArticle() {
 document.addEventListener('keydown', e => {
   if (e.key === 'Escape') closeArticle();
 });
+
+
+// ═══════════════════════════════════════════════════════════
+// DROPDOWN TOGGLE HELPERS
+// ═══════════════════════════════════════════════════════════
+function toggleSeasonDropdown(e) {
+  e.preventDefault();
+  e.stopPropagation();
+  const dd = document.getElementById('season-dropdown');
+  const isOpen = dd.classList.contains('open');
+  closeAllDropdowns();
+  if (!isOpen) dd.classList.add('open');
+}
+
+function toggleStatsDropdown(e) {
+  e.preventDefault();
+  e.stopPropagation();
+  const dd = document.getElementById('stats-dropdown');
+  const isOpen = dd.classList.contains('open');
+  closeAllDropdowns();
+  if (!isOpen) dd.classList.add('open');
+}
+
+// ═══════════════════════════════════════════════════════════
+// SINGLE INIT — all DOM-ready code in one place
+// ═══════════════════════════════════════════════════════════
+document.addEventListener('DOMContentLoaded', () => {
+
+  // ── Close dropdowns on outside click ──────────────────
+  document.addEventListener('click', e => {
+    if (!e.target.closest('.nav-dropdown')) closeAllDropdowns();
+  });
+
+  // ── Hamburger ──────────────────────────────────────────
+  document.getElementById('hamburger')?.addEventListener('click', () => {
+    document.getElementById('nav-links').classList.toggle('open');
+  });
+
+  // Close mobile menu when any dropdown item is clicked
+  document.querySelectorAll('.dropdown-item').forEach(item => {
+    item.addEventListener('click', () => closeMobileMenu());
+  });
+
+  // ── Password inputs ────────────────────────────────────
+  document.getElementById('import-lock-input')?.addEventListener('keydown', e => {
+    if (e.key === 'Enter')  submitImportPassword();
+    if (e.key === 'Escape') closeImportLock();
+  });
+  document.getElementById('admin-lock-input')?.addEventListener('keydown', e => {
+    if (e.key === 'Enter')  submitAdminPassword();
+    if (e.key === 'Escape') closeAdminLock();
+  });
+
+  // ── CSV drag/drop ──────────────────────────────────────
+  const dropZone  = document.getElementById('drop-zone');
+  const fileInput = document.getElementById('csv-file-input');
+  dropZone?.addEventListener('click', () => fileInput.click());
+  fileInput?.addEventListener('change', () => handleFile(fileInput.files[0]));
+  dropZone?.addEventListener('dragover', e => { e.preventDefault(); dropZone.style.borderColor='var(--cookie)'; });
+  dropZone?.addEventListener('dragleave', () => { dropZone.style.borderColor=''; });
+  dropZone?.addEventListener('drop', e => { e.preventDefault(); dropZone.style.borderColor=''; handleFile(e.dataTransfer.files[0]); });
+
+  // ── Stats tables ───────────────────────────────────────
+  document.querySelectorAll('.stats-table th').forEach(th => {
+    th.addEventListener('click', () => sortTable(th));
+  });
+
+  // ── Gallery ────────────────────────────────────────────
+  initGallery();
+  initSlideshow();
+
+  // ── Game log & home ────────────────────────────────────
+  renderGameLog();
+  updateHomeRecord();
+
+  // ── Theme ──────────────────────────────────────────────
+  initTheme();
+  updateLastGame();
+
+  // ── Next game + POTG ───────────────────────────────────
+  renderNextGame();
+  renderPOTG();
+
+  // ── Routing ────────────────────────────────────────────
+  routeFromHash();
+});
+
+window.addEventListener('popstate', routeFromHash);
