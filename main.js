@@ -42,7 +42,7 @@ const PLAYERS = {
   },
   hightower: {
     number:'14', name:'Dylan Hightower', year:'Rookie', hand:'L/L',
-    position:'Pitcher / Batter', debutYear:'2026',
+    position:'Pitcher / Batter', debutYear:'2026', height:"5'11", weight:'195',
     batting2025:  { G:'—',PA:'—',AB:'—',R:'—',H:'—','1B':'—','2B':'—','3B':'—',HR:'—',RBI:'—',BB:'—',SO:'—',BA:'—',OBP:'—',SLG:'—',OPS:'—','OPS+':'—',WOBA:'—',TB:'—',WAR:'—' },
     pitching2025: { W:'—',L:'—','W-L%':'—',ERA:'—',G:'—',GS:'—',GF:'—',SV:'—',IP:'—',H:'—',R:'—',ER:'—',HR:'—',BB:'—',SO:'—',BF:'—',WHIP:'—','SO/BB':'—',WAR:'—' },
     fielding2025: { G:'—',GS:'—',Inn:'—',CH:'—',PO:'—',A:'—',E:'—',DP:'—','Fld%':'—','RF/4':'—','RF/G':'—',POS:'—',WAR:'—' },
@@ -1171,13 +1171,15 @@ const ARTICLES = {
     date:  '2025',
     hero:  'assets/MediaPic5.jpg',
     body: `
-      <p>Hello, we are The Cookie Monsters. Founded in 2025 by Landon Simpson and Landon Davidson, we are a team built on competition, creativity, and a passion for the game. Our goal is to elevate wiffle ball through high-level play, engaging content, and a growing community.</p>
-      <h4>How It Started</h4>
-      <p>What started as a shared love of the game between two friends quickly grew into something bigger. Simpson and Davidson built a roster, designed jerseys, tracked stats, and entered tournaments — treating it with the same seriousness as any professional sport.</p>
-      <h4>The Name</h4>
-      <p>Cookie Monsters. The name says it all — relentless, a little chaotic, and impossible to stop once they get going. The blue jerseys, the cookie logo, the mascot on the field — it all came together to create a brand that's as fun as it is competitive.</p>
+      <p>The Cookie Monsters didn't start on a wiffleball field. It started in a Rocket League club, where a group of competitive gamers discovered they had something bigger in common — a drive to compete, create, and build something worth following.</p>
+      <h4>From Rocket League to Wiffleball</h4>
+      <p>Co-founders Landon Simpson and Landon Davidson took that competitive culture from the virtual pitch and brought it to the real one. What started as casual conversations about getting a wiffleball team together quickly turned into something serious — jerseys, stats, a roster, and a brand.</p>
+      <h4>The 2025 MLW Tournament</h4>
+      <p>The team's debut came at the 2025 MLW Tournament — and it's where everything clicked. The Cookie Monster mascot came to the field, the name stuck, and the branding locked in. From that day forward, the blue jerseys, the cookie logo, and the mascot became the identity of the team. Cookie Monsters wasn't just a name anymore. It was a brand.</p>
+      <h4>How We Got the Name</h4>
+      <p>The Cookie Monster stuffed animal made its first appearance at that MLW tournament — sitting on the field, watching the action. It fit perfectly. Relentless, a little chaotic, and impossible to stop once going. The name was never going to be anything else after that.</p>
       <h4>What's Next</h4>
-      <p>2026 marks the team's TWBL debut. The foundation is built. The roster is set. The Cookie Monsters are ready to show the league what they're made of.</p>
+      <p>2026 marks the team's TWBL debut. The foundation is built, the roster is set, and the brand is established. The Cookie Monsters are ready to show the league what they're made of.</p>
     `,
     social: 'https://www.instagram.com/cookiemonsterswiffle/'
   },
