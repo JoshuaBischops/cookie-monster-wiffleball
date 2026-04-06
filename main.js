@@ -1060,19 +1060,8 @@ updateLeaderboard = function() {
   }, 50);
 };
 
-// Season dropdown — same logic as stats dropdown
+// Close mobile menu when any dropdown item is clicked
 document.addEventListener('DOMContentLoaded', () => {
-  const seasonDd = document.getElementById('season-dropdown');
-  if (seasonDd) {
-    seasonDd.querySelector('.nav-link')?.addEventListener('click', e => {
-      e.preventDefault();
-      const open = seasonDd.classList.contains('open');
-      closeAllDropdowns();
-      if (!open) seasonDd.classList.add('open');
-    });
-  }
-
-  // Close mobile menu when any dropdown item is clicked
   document.querySelectorAll('.dropdown-item').forEach(item => {
     item.addEventListener('click', () => closeMobileMenu());
   });
@@ -1199,4 +1188,107 @@ function renderPOTG() {
 document.addEventListener('DOMContentLoaded', () => {
   renderNextGame();
   renderPOTG();
+});
+
+
+// ═══════════════════════════════════════════════════════════
+// NEWS ARTICLES
+// ═══════════════════════════════════════════════════════════
+const ARTICLES = {
+  'josh-jung-tournament': {
+    tag:   'Tournament Recap',
+    title: 'Josh Jung Tournament — Cookie Monsters Compete',
+    date:  '2025',
+    hero:  'assets/MediaPic2.jpg',
+    body: `
+      <p>The Cookie Monsters made their competitive debut at the Josh Jung Tournament in 2025 — one of the most prestigious wiffleball tournaments in the DFW area. Playing against some of the best teams in the Texas Wiffle Ball League circuit, the Monsters came in hungry and left with valuable experience.</p>
+      <h4>Tournament Highlights</h4>
+      <p>Landon Simpson led the pitching staff with an efficient outing in the pool play round, recording multiple strikeouts and keeping the offense in the game. At the plate, the Monsters showed flashes of the offensive potential they would continue to develop throughout the season.</p>
+      <p>The tournament served as a proving ground for a young roster finding its identity — and a preview of what Cookie Monsters would bring to TWBL in 2026.</p>
+      <h4>Looking Ahead</h4>
+      <p>The 2025 tournament season laid the foundation. With stats tracked, tendencies identified, and chemistry built, the Cookie Monsters return in 2026 as a more polished, more dangerous squad. Keep an eye on this team.</p>
+    `,
+    social: 'https://www.instagram.com/cookiemonsterswiffle/'
+  },
+  'roster-2026': {
+    tag:   'Team News',
+    title: '2026 Roster Set — Cookie Monsters Ready for TWBL',
+    date:  'January 2026',
+    hero:  'assets/MediaPic3.jpg',
+    body: `
+      <p>The Cookie Monsters have officially locked in their 2026 roster for their inaugural Texas Wiffle Ball League season. Seven players. One goal. Don't crumble.</p>
+      <h4>The Returning Core</h4>
+      <p>Leading the charge are co-founders Landon Simpson (#10) and Landon Davidson (#21), who bring experience from the 2025 tournament circuit. Joining them are returning players Garret Harrell (#27) and Zach Torres (#19), who add depth and veteran presence to the lineup.</p>
+      <h4>The Rookies</h4>
+      <p>Three new faces join the squad for 2026: Logan Wurzbach (#12), Dylan Hightower (#14), and Joshua Bischops (#55). All three bring fresh energy and raw talent to a team that already knows how to compete.</p>
+      <h4>2026 TWBL Season</h4>
+      <p>The Cookie Monsters enter TWBL's Medium Pitch Division in the DFW Area — the league's most competitive circuit. Follow along all season at cookiemonsterswiffle.com and on Instagram @cookiemonsterswiffle.</p>
+    `,
+    social: 'https://www.instagram.com/cookiemonsterswiffle/'
+  },
+  'founded': {
+    tag:   'Team News',
+    title: 'Cookie Monsters Founded — The Origin Story',
+    date:  '2025',
+    hero:  'assets/MediaPic5.jpg',
+    body: `
+      <p>Hello, we are The Cookie Monsters. Founded in 2025 by Landon Simpson and Landon Davidson, we are a team built on competition, creativity, and a passion for the game. Our goal is to elevate wiffle ball through high-level play, engaging content, and a growing community.</p>
+      <h4>How It Started</h4>
+      <p>What started as a shared love of the game between two friends quickly grew into something bigger. Simpson and Davidson built a roster, designed jerseys, tracked stats, and entered tournaments — treating it with the same seriousness as any professional sport.</p>
+      <h4>The Name</h4>
+      <p>Cookie Monsters. The name says it all — relentless, a little chaotic, and impossible to stop once they get going. The blue jerseys, the cookie logo, the mascot on the field — it all came together to create a brand that's as fun as it is competitive.</p>
+      <h4>What's Next</h4>
+      <p>2026 marks the team's TWBL debut. The foundation is built. The roster is set. The Cookie Monsters are ready to show the league what they're made of.</p>
+    `,
+    social: 'https://www.instagram.com/cookiemonsterswiffle/'
+  },
+  'youtube-launch': {
+    tag:   'Media',
+    title: 'Cookie Monsters on YouTube',
+    date:  '2026',
+    hero:  null,
+    body: `
+      <p>The Cookie Monsters YouTube channel is officially live. Subscribe at <strong>@CookieMonstersWiffle</strong> for all the content coming out of the 2026 TWBL season and beyond.</p>
+      <h4>What to Expect</h4>
+      <p>Game highlights from every TWBL matchup, tournament recaps, player spotlights, and behind the scenes footage that captures what it's really like to be a Cookie Monster. This isn't just a team — it's a brand — and the YouTube channel is where that story gets told in full.</p>
+      <h4>First Video</h4>
+      <p>The first video is already up on the Media page. Head over and give it a watch — and make sure to subscribe so you don't miss a single upload this season.</p>
+    `,
+    social: 'https://www.youtube.com/@CookieMonstersWiffle'
+  }
+};
+
+function openArticle(id) {
+  const a = ARTICLES[id];
+  if (!a) return;
+
+  const heroHtml = a.hero
+    ? `<img src="${a.hero}" alt="${a.title}" class="article-hero"/>`
+    : `<div style="height:12px;"></div>`;
+
+  document.getElementById('article-inner').innerHTML = `
+    <div class="article-tag">${a.tag}</div>
+    <div class="article-title">${a.title}</div>
+    <div class="article-meta">${a.date} · Cookie Monsters Wiffleball</div>
+    ${heroHtml}
+    <div class="article-body">${a.body}</div>
+    <div class="article-social-row">
+      <a class="btn-primary btn-sm" href="${a.social}" target="_blank" rel="noopener">Follow on ${a.social.includes('instagram') ? 'Instagram' : 'YouTube'} →</a>
+    </div>
+  `;
+
+  const overlay = document.getElementById('article-overlay');
+  overlay.style.display = 'block';
+  overlay.scrollTop = 0;
+  document.body.style.overflow = 'hidden';
+}
+
+function closeArticle() {
+  document.getElementById('article-overlay').style.display = 'none';
+  document.body.style.overflow = '';
+}
+
+// Close on Escape
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeArticle();
 });
